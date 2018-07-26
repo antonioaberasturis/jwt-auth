@@ -42,12 +42,12 @@
     },
     "autoload": {
         "psr-4": {
-            "anton\\JWTAuth\\": "src/"
+            "Anton\\JWTAuth\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "anton\\JWTAuth\\Test\\": "tests/"
+            "Anton\\JWTAuth\\Test\\": "tests/"
         }
     },
     "extra": {
@@ -56,11 +56,11 @@
         },
         "laravel": {
             "aliases": {
-                "JWTAuth": "anton\\JWTAuth\\Facades\\JWTAuth",
-                "JWTFactory": "anton\\JWTAuth\\Facades\\JWTFactory"
+                "JWTAuth": "Anton\\JWTAuth\\Facades\\JWTAuth",
+                "JWTFactory": "Anton\\JWTAuth\\Facades\\JWTFactory"
             },
             "providers": [
-                "anton\\JWTAuth\\Providers\\LaravelServiceProvider"
+                "Anton\\JWTAuth\\Providers\\LaravelServiceProvider"
             ]
         }
     },
