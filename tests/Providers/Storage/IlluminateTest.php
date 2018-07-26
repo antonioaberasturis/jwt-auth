@@ -3,19 +3,19 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test\Providers\Storage;
+namespace Anton\JWTAuth\Test\Providers\Storage;
 
 use Mockery;
-use Tymon\JWTAuth\Test\AbstractTestCase;
+use Anton\JWTAuth\Test\AbstractTestCase;
 use Illuminate\Contracts\Cache\Repository;
-use Tymon\JWTAuth\Test\Stubs\TaggedStorage;
-use Tymon\JWTAuth\Providers\Storage\Illuminate as Storage;
+use Anton\JWTAuth\Test\Stubs\TaggedStorage;
+use Anton\JWTAuth\Providers\Storage\Illuminate as Storage;
 
 class IlluminateTest extends AbstractTestCase
 {
@@ -25,7 +25,7 @@ class IlluminateTest extends AbstractTestCase
     protected $cache;
 
     /**
-     * @var \Tymon\JWTAuth\Providers\Storage\Illuminate
+     * @var \Anton\JWTAuth\Providers\Storage\Illuminate
      */
     protected $storage;
 
@@ -82,14 +82,12 @@ class IlluminateTest extends AbstractTestCase
     /**
      * Replace the storage with our one above that overrides the tag flag, and
      * define expectations for tags() method.
-     *
-     * @return void
      */
     private function emulateTags()
     {
         $this->storage = new TaggedStorage($this->cache);
 
-        $this->cache->shouldReceive('tags')->with('tymon.jwt')->once()->andReturn(Mockery::self());
+        $this->cache->shouldReceive('tags')->with('anton.jwt')->once()->andReturn(Mockery::self());
     }
 
     /** @test */

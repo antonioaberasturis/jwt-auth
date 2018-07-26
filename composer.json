@@ -16,7 +16,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Sean Tymon",
+            "name": "Sean Anton",
             "email": "tymon148@gmail.com",
             "homepage": "https://tymon.xyz",
             "role": "Developer"
@@ -42,12 +42,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Tymon\\JWTAuth\\": "src/"
+            "anton\\JWTAuth\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tymon\\JWTAuth\\Test\\": "tests/"
+            "anton\\JWTAuth\\Test\\": "tests/"
         }
     },
     "extra": {
@@ -56,11 +56,11 @@
         },
         "laravel": {
             "aliases": {
-                "JWTAuth": "Tymon\\JWTAuth\\Facades\\JWTAuth",
-                "JWTFactory": "Tymon\\JWTAuth\\Facades\\JWTFactory"
+                "JWTAuth": "anton\\JWTAuth\\Facades\\JWTAuth",
+                "JWTFactory": "anton\\JWTAuth\\Facades\\JWTFactory"
             },
             "providers": [
-                "Tymon\\JWTAuth\\Providers\\LaravelServiceProvider"
+                "anton\\JWTAuth\\Providers\\LaravelServiceProvider"
             ]
         }
     },

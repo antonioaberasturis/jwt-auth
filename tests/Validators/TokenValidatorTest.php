@@ -3,21 +3,21 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test\Validators;
+namespace Anton\JWTAuth\Test\Validators;
 
-use Tymon\JWTAuth\Test\AbstractTestCase;
-use Tymon\JWTAuth\Validators\TokenValidator;
+use Anton\JWTAuth\Test\AbstractTestCase;
+use Anton\JWTAuth\Validators\TokenValidator;
 
 class TokenValidatorTest extends AbstractTestCase
 {
     /**
-     * @var \Tymon\JWTAuth\Validators\TokenValidator
+     * @var \Anton\JWTAuth\Validators\TokenValidator
      */
     protected $validator;
 
@@ -25,7 +25,7 @@ class TokenValidatorTest extends AbstractTestCase
     {
         parent::setUp();
 
-        $this->validator = new TokenValidator;
+        $this->validator = new TokenValidator();
     }
 
     /** @test */
@@ -49,9 +49,9 @@ class TokenValidatorTest extends AbstractTestCase
 
     /**
      * @test
-     * @dataProvider \Tymon\JWTAuth\Test\Validators\TokenValidatorTest::dataProviderMalformedTokens
+     * @dataProvider \Anton\JWTAuth\Test\Validators\TokenValidatorTest::dataProviderMalformedTokens
      *
-     * @param  string  $token
+     * @param string $token
      */
     public function it_should_return_false_when_providing_a_malformed_token($token)
     {
@@ -60,10 +60,10 @@ class TokenValidatorTest extends AbstractTestCase
 
     /**
      * @test
-     * @dataProvider \Tymon\JWTAuth\Test\Validators\TokenValidatorTest::dataProviderMalformedTokens
+     * @dataProvider \Anton\JWTAuth\Test\Validators\TokenValidatorTest::dataProviderMalformedTokens
      *
-     * @param  string  $token
-     * @expectedException \Tymon\JWTAuth\Exceptions\TokenInvalidException
+     * @param string $token
+     * @expectedException \Anton\JWTAuth\Exceptions\TokenInvalidException
      * @expectedExceptionMessage Malformed token
      */
     public function it_should_throw_an_exception_when_providing_a_malformed_token($token)
@@ -82,9 +82,9 @@ class TokenValidatorTest extends AbstractTestCase
 
     /**
      * @test
-     * @dataProvider \Tymon\JWTAuth\Test\Validators\TokenValidatorTest::dataProviderTokensWithWrongSegmentsNumber
+     * @dataProvider \Anton\JWTAuth\Test\Validators\TokenValidatorTest::dataProviderTokensWithWrongSegmentsNumber
      *
-     * @param  string  $token
+     * @param string $token
      */
     public function it_should_return_false_when_providing_a_token_with_wrong_segments_number($token)
     {
@@ -93,10 +93,10 @@ class TokenValidatorTest extends AbstractTestCase
 
     /**
      * @test
-     * @dataProvider \Tymon\JWTAuth\Test\Validators\TokenValidatorTest::dataProviderTokensWithWrongSegmentsNumber
+     * @dataProvider \Anton\JWTAuth\Test\Validators\TokenValidatorTest::dataProviderTokensWithWrongSegmentsNumber
      *
-     * @param  string  $token
-     * @expectedException \Tymon\JWTAuth\Exceptions\TokenInvalidException
+     * @param string $token
+     * @expectedException \Anton\JWTAuth\Exceptions\TokenInvalidException
      * @expectedExceptionMessage Wrong number of segments
      */
     public function it_should_throw_an_exception_when_providing_a_malformed_token_with_wrong_segments_number($token)

@@ -3,36 +3,36 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test;
+namespace Anton\JWTAuth\Test;
 
 use Mockery;
-use Tymon\JWTAuth\Payload;
-use Tymon\JWTAuth\Claims\Claim;
-use Tymon\JWTAuth\Claims\JwtId;
-use Tymon\JWTAuth\Claims\Issuer;
-use Tymon\JWTAuth\Claims\Subject;
-use Tymon\JWTAuth\Claims\Audience;
-use Tymon\JWTAuth\Claims\IssuedAt;
-use Tymon\JWTAuth\Claims\NotBefore;
-use Tymon\JWTAuth\Claims\Collection;
-use Tymon\JWTAuth\Claims\Expiration;
-use Tymon\JWTAuth\Validators\PayloadValidator;
+use Anton\JWTAuth\Payload;
+use Anton\JWTAuth\Claims\Claim;
+use Anton\JWTAuth\Claims\JwtId;
+use Anton\JWTAuth\Claims\Issuer;
+use Anton\JWTAuth\Claims\Subject;
+use Anton\JWTAuth\Claims\Audience;
+use Anton\JWTAuth\Claims\IssuedAt;
+use Anton\JWTAuth\Claims\NotBefore;
+use Anton\JWTAuth\Claims\Collection;
+use Anton\JWTAuth\Claims\Expiration;
+use Anton\JWTAuth\Validators\PayloadValidator;
 
 class PayloadTest extends AbstractTestCase
 {
     /**
-     * @var \Mockery\MockInterface|\Tymon\JWTAuth\Validators\PayloadValidator
+     * @var \Mockery\MockInterface|\Anton\JWTAuth\Validators\PayloadValidator
      */
     protected $validator;
 
     /**
-     * @var \Tymon\JWTAuth\Payload
+     * @var \Anton\JWTAuth\Payload
      */
     protected $payload;
 
@@ -44,9 +44,9 @@ class PayloadTest extends AbstractTestCase
     }
 
     /**
-     * @param  array  $extraClaims
+     * @param array $extraClaims
      *
-     * @return \Tymon\JWTAuth\Payload
+     * @return \Anton\JWTAuth\Payload
      */
     private function getTestPayload(array $extraClaims = [])
     {
@@ -73,7 +73,7 @@ class PayloadTest extends AbstractTestCase
 
     /**
      * @test
-     * @expectedException \Tymon\JWTAuth\Exceptions\PayloadException
+     * @expectedException \Anton\JWTAuth\Exceptions\PayloadException
      * @expectedExceptionMessage The payload is immutable
      */
     public function it_should_throw_an_exception_when_trying_to_add_to_the_payload()
@@ -83,7 +83,7 @@ class PayloadTest extends AbstractTestCase
 
     /**
      * @test
-     * @expectedException \Tymon\JWTAuth\Exceptions\PayloadException
+     * @expectedException \Anton\JWTAuth\Exceptions\PayloadException
      * @expectedExceptionMessage The payload is immutable
      */
     public function it_should_throw_an_exception_when_trying_to_remove_a_key_from_the_payload()

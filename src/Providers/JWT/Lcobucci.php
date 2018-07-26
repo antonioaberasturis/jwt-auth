@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Providers\JWT;
+namespace Anton\JWTAuth\Providers\JWT;
 
 use Exception;
 use ReflectionClass;
@@ -19,8 +19,8 @@ use Lcobucci\JWT\Signer\Rsa;
 use Lcobucci\JWT\Signer\Ecdsa;
 use Lcobucci\JWT\Signer\Keychain;
 use Illuminate\Support\Collection;
-use Tymon\JWTAuth\Contracts\Providers\JWT;
-use Tymon\JWTAuth\Exceptions\JWTException;
+use Anton\JWTAuth\Contracts\Providers\JWT;
+use Anton\JWTAuth\Exceptions\JWTException;
 use Lcobucci\JWT\Signer\Rsa\Sha256 as RS256;
 use Lcobucci\JWT\Signer\Rsa\Sha384 as RS384;
 use Lcobucci\JWT\Signer\Rsa\Sha512 as RS512;
@@ -30,7 +30,7 @@ use Lcobucci\JWT\Signer\Hmac\Sha512 as HS512;
 use Lcobucci\JWT\Signer\Ecdsa\Sha256 as ES256;
 use Lcobucci\JWT\Signer\Ecdsa\Sha384 as ES384;
 use Lcobucci\JWT\Signer\Ecdsa\Sha512 as ES512;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Anton\JWTAuth\Exceptions\TokenInvalidException;
 
 class Lcobucci extends Provider implements JWT
 {
@@ -51,13 +51,11 @@ class Lcobucci extends Provider implements JWT
     /**
      * Create the Lcobucci provider.
      *
-     * @param  \Lcobucci\JWT\Builder  $builder
-     * @param  \Lcobucci\JWT\Parser  $parser
-     * @param  string  $secret
-     * @param  string  $algo
-     * @param  array  $keys
-     *
-     * @return void
+     * @param \Lcobucci\JWT\Builder $builder
+     * @param \Lcobucci\JWT\Parser  $parser
+     * @param string                $secret
+     * @param string                $algo
+     * @param array                 $keys
      */
     public function __construct(
         Builder $builder,
@@ -93,9 +91,9 @@ class Lcobucci extends Provider implements JWT
     /**
      * Create a JSON Web Token.
      *
-     * @param  array  $payload
+     * @param array $payload
      *
-     * @throws \Tymon\JWTAuth\Exceptions\JWTException
+     * @throws \Anton\JWTAuth\Exceptions\JWTException
      *
      * @return string
      */
@@ -119,9 +117,9 @@ class Lcobucci extends Provider implements JWT
     /**
      * Decode a JSON Web Token.
      *
-     * @param  string  $token
+     * @param string $token
      *
-     * @throws \Tymon\JWTAuth\Exceptions\JWTException
+     * @throws \Anton\JWTAuth\Exceptions\JWTException
      *
      * @return array
      */
@@ -133,7 +131,7 @@ class Lcobucci extends Provider implements JWT
             throw new TokenInvalidException('Could not decode token: '.$e->getMessage(), $e->getCode(), $e);
         }
 
-        if (! $jwt->verify($this->signer, $this->getVerificationKey())) {
+        if (!$jwt->verify($this->signer, $this->getVerificationKey())) {
             throw new TokenInvalidException('Token Signature could not be verified.');
         }
 
@@ -145,17 +143,17 @@ class Lcobucci extends Provider implements JWT
     /**
      * Get the signer instance.
      *
-     * @throws \Tymon\JWTAuth\Exceptions\JWTException
+     * @throws \Anton\JWTAuth\Exceptions\JWTException
      *
      * @return \Lcobucci\JWT\Signer
      */
     protected function getSigner()
     {
-        if (! array_key_exists($this->algo, $this->signers)) {
+        if (!array_key_exists($this->algo, $this->signers)) {
             throw new JWTException('The given algorithm could not be found');
         }
 
-        return new $this->signers[$this->algo];
+        return new $this->signers[$this->algo]();
     }
 
     /**

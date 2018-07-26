@@ -3,17 +3,17 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Http\Parser;
+namespace Anton\JWTAuth\Http\Parser;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
-use Tymon\JWTAuth\Contracts\Http\Parser as ParserContract;
+use Anton\JWTAuth\Contracts\Http\Parser as ParserContract;
 
 class Cookies implements ParserContract
 {
@@ -34,7 +34,7 @@ class Cookies implements ParserContract
     /**
      * Try to parse the token from the request cookies.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return null|string
      */

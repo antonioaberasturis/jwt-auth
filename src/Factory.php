@@ -3,20 +3,20 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth;
+namespace Anton\JWTAuth;
 
-use Tymon\JWTAuth\Claims\Claim;
-use Tymon\JWTAuth\Claims\Collection;
-use Tymon\JWTAuth\Support\RefreshFlow;
-use Tymon\JWTAuth\Support\CustomClaims;
-use Tymon\JWTAuth\Validators\PayloadValidator;
-use Tymon\JWTAuth\Claims\Factory as ClaimFactory;
+use Anton\JWTAuth\Claims\Claim;
+use Anton\JWTAuth\Claims\Collection;
+use Anton\JWTAuth\Support\RefreshFlow;
+use Anton\JWTAuth\Support\CustomClaims;
+use Anton\JWTAuth\Validators\PayloadValidator;
+use Anton\JWTAuth\Claims\Factory as ClaimFactory;
 
 class Factory
 {
@@ -25,14 +25,14 @@ class Factory
     /**
      * The claim factory.
      *
-     * @var \Tymon\JWTAuth\Claims\Factory
+     * @var \Anton\JWTAuth\Claims\Factory
      */
     protected $claimFactory;
 
     /**
      * The validator.
      *
-     * @var \Tymon\JWTAuth\Validators\PayloadValidator
+     * @var \Anton\JWTAuth\Validators\PayloadValidator
      */
     protected $validator;
 
@@ -52,31 +52,29 @@ class Factory
     /**
      * The claims collection.
      *
-     * @var \Tymon\JWTAuth\Claims\Collection
+     * @var \Anton\JWTAuth\Claims\Collection
      */
     protected $claims;
 
     /**
      * Constructor.
      *
-     * @param  \Tymon\JWTAuth\Claims\Factory  $claimFactory
-     * @param  \Tymon\JWTAuth\Validators\PayloadValidator  $validator
-     *
-     * @return void
+     * @param \Anton\JWTAuth\Claims\Factory              $claimFactory
+     * @param \Anton\JWTAuth\Validators\PayloadValidator $validator
      */
     public function __construct(ClaimFactory $claimFactory, PayloadValidator $validator)
     {
         $this->claimFactory = $claimFactory;
         $this->validator = $validator;
-        $this->claims = new Collection;
+        $this->claims = new Collection();
     }
 
     /**
      * Create the Payload instance.
      *
-     * @param  bool  $resetClaims
+     * @param bool $resetClaims
      *
-     * @return \Tymon\JWTAuth\Payload
+     * @return \Anton\JWTAuth\Payload
      */
     public function make($resetClaims = false)
     {
@@ -96,7 +94,7 @@ class Factory
      */
     public function emptyClaims()
     {
-        $this->claims = new Collection;
+        $this->claims = new Collection();
 
         return $this;
     }
@@ -104,7 +102,7 @@ class Factory
     /**
      * Add an array of claims to the Payload.
      *
-     * @param  array  $claims
+     * @param array $claims
      *
      * @return $this
      */
@@ -120,8 +118,8 @@ class Factory
     /**
      * Add a claim to the Payload.
      *
-     * @param  string  $name
-     * @param  mixed  $value
+     * @param string $name
+     * @param mixed  $value
      *
      * @return $this
      */
@@ -156,7 +154,7 @@ class Factory
     /**
      * Build out the Claim DTO's.
      *
-     * @return \Tymon\JWTAuth\Claims\Collection
+     * @return \Anton\JWTAuth\Claims\Collection
      */
     protected function resolveClaims()
     {
@@ -168,7 +166,7 @@ class Factory
     /**
      * Build and get the Claims Collection.
      *
-     * @return \Tymon\JWTAuth\Claims\Collection
+     * @return \Anton\JWTAuth\Claims\Collection
      */
     public function buildClaimsCollection()
     {
@@ -178,9 +176,9 @@ class Factory
     /**
      * Get a Payload instance with a claims collection.
      *
-     * @param  \Tymon\JWTAuth\Claims\Collection  $claims
+     * @param \Anton\JWTAuth\Claims\Collection $claims
      *
-     * @return \Tymon\JWTAuth\Payload
+     * @return \Anton\JWTAuth\Payload
      */
     public function withClaims(Collection $claims)
     {
@@ -190,7 +188,7 @@ class Factory
     /**
      * Set the default claims to be added to the Payload.
      *
-     * @param  array  $claims
+     * @param array $claims
      *
      * @return $this
      */
@@ -204,7 +202,7 @@ class Factory
     /**
      * Helper to set the ttl.
      *
-     * @param  int  $ttl
+     * @param int $ttl
      *
      * @return $this
      */
@@ -238,7 +236,7 @@ class Factory
     /**
      * Get the PayloadValidator instance.
      *
-     * @return \Tymon\JWTAuth\Validators\PayloadValidator
+     * @return \Anton\JWTAuth\Validators\PayloadValidator
      */
     public function validator()
     {
@@ -248,8 +246,8 @@ class Factory
     /**
      * Magically add a claim.
      *
-     * @param  string  $method
-     * @param  array  $parameters
+     * @param string $method
+     * @param array  $parameters
      *
      * @return $this
      */

@@ -3,17 +3,17 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Http\Middleware;
+namespace Anton\JWTAuth\Http\Middleware;
 
-use Tymon\JWTAuth\JWTAuth;
+use Anton\JWTAuth\JWTAuth;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Exceptions\JWTException;
+use Anton\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 abstract class BaseMiddleware
@@ -21,16 +21,14 @@ abstract class BaseMiddleware
     /**
      * The JWT Authenticator.
      *
-     * @var \Tymon\JWTAuth\JWTAuth
+     * @var \Anton\JWTAuth\JWTAuth
      */
     protected $auth;
 
     /**
      * Create a new BaseMiddleware instance.
      *
-     * @param  \Tymon\JWTAuth\JWTAuth  $auth
-     *
-     * @return void
+     * @param \Anton\JWTAuth\JWTAuth $auth
      */
     public function __construct(JWTAuth $auth)
     {
@@ -40,15 +38,13 @@ abstract class BaseMiddleware
     /**
      * Check the request for the presence of a token.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      *
      * @throws \Symfony\Component\HttpKernel\Exception\BadRequestHttpException
-     *
-     * @return void
      */
     public function checkForToken(Request $request)
     {
-        if (! $this->auth->parser()->setRequest($request)->hasToken()) {
+        if (!$this->auth->parser()->setRequest($request)->hasToken()) {
             throw new UnauthorizedHttpException('jwt-auth', 'Token not provided');
         }
     }
@@ -56,18 +52,16 @@ abstract class BaseMiddleware
     /**
      * Attempt to authenticate a user via the token in the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      *
      * @throws \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException
-     *
-     * @return void
      */
     public function authenticate(Request $request)
     {
         $this->checkForToken($request);
 
         try {
-            if (! $this->auth->parseToken()->authenticate()) {
+            if (!$this->auth->parseToken()->authenticate()) {
                 throw new UnauthorizedHttpException('jwt-auth', 'User not found');
             }
         } catch (JWTException $e) {
@@ -78,8 +72,8 @@ abstract class BaseMiddleware
     /**
      * Set the authentication header.
      *
-     * @param  \Illuminate\Http\Response|\Illuminate\Http\JsonResponse  $response
-     * @param  string|null  $token
+     * @param \Illuminate\Http\Response|\Illuminate\Http\JsonResponse $response
+     * @param string|null                                             $token
      *
      * @return \Illuminate\Http\Response|\Illuminate\Http\JsonResponse
      */

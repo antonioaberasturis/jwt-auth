@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Providers\JWT;
+namespace Anton\JWTAuth\Providers\JWT;
 
 use Exception;
 use Namshi\JOSE\JWS;
@@ -17,9 +17,9 @@ use ReflectionClass;
 use ReflectionException;
 use InvalidArgumentException;
 use Namshi\JOSE\Signer\OpenSSL\PublicKey;
-use Tymon\JWTAuth\Contracts\Providers\JWT;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Anton\JWTAuth\Contracts\Providers\JWT;
+use Anton\JWTAuth\Exceptions\JWTException;
+use Anton\JWTAuth\Exceptions\TokenInvalidException;
 
 class Namshi extends Provider implements JWT
 {
@@ -33,12 +33,10 @@ class Namshi extends Provider implements JWT
     /**
      * Constructor.
      *
-     * @param  \Namshi\JOSE\JWS  $jws
-     * @param  string  $secret
-     * @param  string  $algo
-     * @param  array  $keys
-     *
-     * @return void
+     * @param \Namshi\JOSE\JWS $jws
+     * @param string           $secret
+     * @param string           $algo
+     * @param array            $keys
      */
     public function __construct(JWS $jws, $secret, $algo, array $keys)
     {
@@ -50,9 +48,9 @@ class Namshi extends Provider implements JWT
     /**
      * Create a JSON Web Token.
      *
-     * @param  array  $payload
+     * @param array $payload
      *
-     * @throws \Tymon\JWTAuth\Exceptions\JWTException
+     * @throws \Anton\JWTAuth\Exceptions\JWTException
      *
      * @return string
      */
@@ -70,9 +68,9 @@ class Namshi extends Provider implements JWT
     /**
      * Decode a JSON Web Token.
      *
-     * @param  string  $token
+     * @param string $token
      *
-     * @throws \Tymon\JWTAuth\Exceptions\JWTException
+     * @throws \Anton\JWTAuth\Exceptions\JWTException
      *
      * @return array
      */
@@ -85,7 +83,7 @@ class Namshi extends Provider implements JWT
             throw new TokenInvalidException('Could not decode token: '.$e->getMessage(), $e->getCode(), $e);
         }
 
-        if (! $jws->verify($this->getVerificationKey(), $this->getAlgo())) {
+        if (!$jws->verify($this->getVerificationKey(), $this->getAlgo())) {
             throw new TokenInvalidException('Token Signature could not be verified.');
         }
 

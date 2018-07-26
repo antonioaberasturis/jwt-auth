@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Providers\JWT;
+namespace Anton\JWTAuth\Providers\JWT;
 
 use Illuminate\Support\Arr;
 
@@ -39,11 +39,9 @@ abstract class Provider
     /**
      * Constructor.
      *
-     * @param  string  $secret
-     * @param  string  $algo
-     * @param  array  $keys
-     *
-     * @return void
+     * @param string $secret
+     * @param string $algo
+     * @param array  $keys
      */
     public function __construct($secret, $algo, array $keys)
     {
@@ -55,7 +53,7 @@ abstract class Provider
     /**
      * Set the algorithm used to sign the token.
      *
-     * @param  string  $algo
+     * @param string $algo
      *
      * @return $this
      */
@@ -79,7 +77,7 @@ abstract class Provider
     /**
      * Set the secret used to sign the token.
      *
-     * @param  string  $secret
+     * @param string $secret
      *
      * @return $this
      */
@@ -103,7 +101,7 @@ abstract class Provider
     /**
      * Set the keys used to sign the token.
      *
-     * @param  array  $keys
+     * @param array $keys
      *
      * @return $this
      */
@@ -182,7 +180,7 @@ abstract class Provider
      * Determine if the algorithm is asymmetric, and thus
      * requires a public/private key combo.
      *
-     * @throws \Tymon\JWTAuth\Exceptions\JWTException
+     * @throws \Anton\JWTAuth\Exceptions\JWTException
      *
      * @return bool
      */

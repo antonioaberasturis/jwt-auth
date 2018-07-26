@@ -3,23 +3,23 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth;
+namespace Anton\JWTAuth;
 
-use Tymon\JWTAuth\Support\Utils;
-use Tymon\JWTAuth\Contracts\Providers\Storage;
+use Anton\JWTAuth\Support\Utils;
+use Anton\JWTAuth\Contracts\Providers\Storage;
 
 class Blacklist
 {
     /**
      * The storage.
      *
-     * @var \Tymon\JWTAuth\Contracts\Providers\Storage
+     * @var \Anton\JWTAuth\Contracts\Providers\Storage
      */
     protected $storage;
 
@@ -47,9 +47,7 @@ class Blacklist
     /**
      * Constructor.
      *
-     * @param  \Tymon\JWTAuth\Contracts\Providers\Storage  $storage
-     *
-     * @return void
+     * @param \Anton\JWTAuth\Contracts\Providers\Storage $storage
      */
     public function __construct(Storage $storage)
     {
@@ -59,7 +57,7 @@ class Blacklist
     /**
      * Add the token (jti claim) to the blacklist.
      *
-     * @param  \Tymon\JWTAuth\Payload  $payload
+     * @param \Anton\JWTAuth\Payload $payload
      *
      * @return bool
      */
@@ -67,7 +65,7 @@ class Blacklist
     {
         // if there is no exp claim then add the jwt to
         // the blacklist indefinitely
-        if (! $payload->hasKey('exp')) {
+        if (!$payload->hasKey('exp')) {
             return $this->addForever($payload);
         }
 
@@ -83,7 +81,7 @@ class Blacklist
     /**
      * Get the number of minutes until the token expiry.
      *
-     * @param  \Tymon\JWTAuth\Payload  $payload
+     * @param \Anton\JWTAuth\Payload $payload
      *
      * @return int
      */
@@ -101,7 +99,7 @@ class Blacklist
     /**
      * Add the token (jti claim) to the blacklist indefinitely.
      *
-     * @param  \Tymon\JWTAuth\Payload  $payload
+     * @param \Anton\JWTAuth\Payload $payload
      *
      * @return bool
      */
@@ -115,7 +113,7 @@ class Blacklist
     /**
      * Determine whether the token has been blacklisted.
      *
-     * @param  \Tymon\JWTAuth\Payload  $payload
+     * @param \Anton\JWTAuth\Payload $payload
      *
      * @return bool
      */
@@ -129,13 +127,13 @@ class Blacklist
         }
 
         // check whether the expiry + grace has past
-        return ! empty($val) && ! Utils::isFuture($val['valid_until']);
+        return !empty($val) && !Utils::isFuture($val['valid_until']);
     }
 
     /**
      * Remove the token (jti claim) from the blacklist.
      *
-     * @param  \Tymon\JWTAuth\Payload  $payload
+     * @param \Anton\JWTAuth\Payload $payload
      *
      * @return bool
      */
@@ -170,7 +168,7 @@ class Blacklist
     /**
      * Set the grace period.
      *
-     * @param  int  $gracePeriod
+     * @param int $gracePeriod
      *
      * @return $this
      */
@@ -194,7 +192,7 @@ class Blacklist
     /**
      * Get the unique key held within the blacklist.
      *
-     * @param  \Tymon\JWTAuth\Payload  $payload
+     * @param \Anton\JWTAuth\Payload $payload
      *
      * @return mixed
      */
@@ -206,7 +204,7 @@ class Blacklist
     /**
      * Set the unique key held within the blacklist.
      *
-     * @param  string  $key
+     * @param string $key
      *
      * @return $this
      */
@@ -220,7 +218,7 @@ class Blacklist
     /**
      * Set the refresh time limit.
      *
-     * @param  int  $ttl
+     * @param int $ttl
      *
      * @return $this
      */

@@ -3,17 +3,17 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Validators;
+namespace Anton\JWTAuth\Validators;
 
-use Tymon\JWTAuth\Support\RefreshFlow;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Contracts\Validator as ValidatorContract;
+use Anton\JWTAuth\Support\RefreshFlow;
+use Anton\JWTAuth\Exceptions\JWTException;
+use Anton\JWTAuth\Contracts\Validator as ValidatorContract;
 
 abstract class Validator implements ValidatorContract
 {
@@ -22,7 +22,7 @@ abstract class Validator implements ValidatorContract
     /**
      * Helper function to return a boolean.
      *
-     * @param  array  $value
+     * @param array $value
      *
      * @return bool
      */
@@ -40,9 +40,7 @@ abstract class Validator implements ValidatorContract
     /**
      * Run the validation.
      *
-     * @param  array  $value
-     *
-     * @return void
+     * @param array $value
      */
     abstract public function check($value);
 }

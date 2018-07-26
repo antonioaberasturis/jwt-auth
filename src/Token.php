@@ -3,15 +3,15 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth;
+namespace Anton\JWTAuth;
 
-use Tymon\JWTAuth\Validators\TokenValidator;
+use Anton\JWTAuth\Validators\TokenValidator;
 
 class Token
 {
@@ -23,13 +23,11 @@ class Token
     /**
      * Create a new JSON Web Token.
      *
-     * @param  string  $value
-     *
-     * @return void
+     * @param string $value
      */
     public function __construct($value)
     {
-        $this->value = (string) (new TokenValidator)->check($value);
+        $this->value = (string) (new TokenValidator())->check($value);
     }
 
     /**

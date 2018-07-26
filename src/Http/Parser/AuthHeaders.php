@@ -3,16 +3,16 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Http\Parser;
+namespace Anton\JWTAuth\Http\Parser;
 
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Contracts\Http\Parser as ParserContract;
+use Anton\JWTAuth\Contracts\Http\Parser as ParserContract;
 
 class AuthHeaders implements ParserContract
 {
@@ -33,7 +33,7 @@ class AuthHeaders implements ParserContract
     /**
      * Attempt to parse the token from some other possible headers.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return null|string
      */
@@ -45,7 +45,7 @@ class AuthHeaders implements ParserContract
     /**
      * Try to parse the token from the request header.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return null|string
      */
@@ -61,7 +61,7 @@ class AuthHeaders implements ParserContract
     /**
      * Set the header name.
      *
-     * @param  string  $headerName
+     * @param string $headerName
      *
      * @return $this
      */
@@ -75,7 +75,7 @@ class AuthHeaders implements ParserContract
     /**
      * Set the header prefix.
      *
-     * @param  string  $headerPrefix
+     * @param string $headerPrefix
      *
      * @return $this
      */

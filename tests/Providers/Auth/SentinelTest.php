@@ -3,19 +3,19 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test\Providers\Auth;
+namespace Anton\JWTAuth\Test\Providers\Auth;
 
 use Mockery;
 use Cartalyst\Sentinel\Sentinel;
-use Tymon\JWTAuth\Test\AbstractTestCase;
-use Tymon\JWTAuth\Test\Stubs\SentinelStub;
-use Tymon\JWTAuth\Providers\Auth\Sentinel as Auth;
+use Anton\JWTAuth\Test\AbstractTestCase;
+use Anton\JWTAuth\Test\Stubs\SentinelStub;
+use Anton\JWTAuth\Providers\Auth\Sentinel as Auth;
 
 class SentinelTest extends AbstractTestCase
 {
@@ -25,7 +25,7 @@ class SentinelTest extends AbstractTestCase
     protected $sentinel;
 
     /**
-     * @var \Tymon\JWTAuth\Providers\Auth\Sentinel
+     * @var \Anton\JWTAuth\Providers\Auth\Sentinel
      */
     protected $auth;
 
@@ -47,7 +47,7 @@ class SentinelTest extends AbstractTestCase
     /** @test */
     public function it_should_return_true_if_user_is_found()
     {
-        $stub = new SentinelStub;
+        $stub = new SentinelStub();
         $this->sentinel->shouldReceive('getUserRepository->findById')->once()->with(123)->andReturn($stub);
         $this->sentinel->shouldReceive('setUser')->once()->with($stub);
 
@@ -66,7 +66,7 @@ class SentinelTest extends AbstractTestCase
     /** @test */
     public function it_should_return_the_currently_authenticated_user()
     {
-        $this->sentinel->shouldReceive('getUser')->once()->andReturn(new SentinelStub);
+        $this->sentinel->shouldReceive('getUser')->once()->andReturn(new SentinelStub());
         $this->assertSame($this->auth->user()->getUserId(), 123);
     }
 }

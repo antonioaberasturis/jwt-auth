@@ -3,18 +3,18 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test\Providers\Auth;
+namespace Anton\JWTAuth\Test\Providers\Auth;
 
 use Mockery;
 use Illuminate\Contracts\Auth\Guard;
-use Tymon\JWTAuth\Test\AbstractTestCase;
-use Tymon\JWTAuth\Providers\Auth\Illuminate as Auth;
+use Anton\JWTAuth\Test\AbstractTestCase;
+use Anton\JWTAuth\Providers\Auth\Illuminate as Auth;
 
 class IlluminateTest extends AbstractTestCase
 {
@@ -24,7 +24,7 @@ class IlluminateTest extends AbstractTestCase
     protected $authManager;
 
     /**
-     * @var \Tymon\JWTAuth\Providers\Auth\Illuminate
+     * @var \Anton\JWTAuth\Providers\Auth\Illuminate
      */
     protected $auth;
 

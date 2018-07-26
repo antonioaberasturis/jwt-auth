@@ -3,15 +3,15 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Providers\Auth;
+namespace Anton\JWTAuth\Providers\Auth;
 
-use Tymon\JWTAuth\Contracts\Providers\Auth;
+use Anton\JWTAuth\Contracts\Providers\Auth;
 use Cartalyst\Sentinel\Sentinel as SentinelAuth;
 
 class Sentinel implements Auth
@@ -26,9 +26,7 @@ class Sentinel implements Auth
     /**
      * Constructor.
      *
-     * @param  \Cartalyst\Sentinel\Sentinel  $sentinel
-     *
-     * @return void
+     * @param \Cartalyst\Sentinel\Sentinel $sentinel
      */
     public function __construct(SentinelAuth $sentinel)
     {
@@ -38,7 +36,7 @@ class Sentinel implements Auth
     /**
      * Check a user's credentials.
      *
-     * @param  array  $credentials
+     * @param array $credentials
      *
      * @return mixed
      */
@@ -50,7 +48,7 @@ class Sentinel implements Auth
     /**
      * Authenticate a user via the id.
      *
-     * @param  mixed  $id
+     * @param mixed $id
      *
      * @return bool
      */

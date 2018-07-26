@@ -3,27 +3,27 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test;
+namespace Anton\JWTAuth\Test;
 
 use Mockery;
-use Tymon\JWTAuth\JWT;
-use Tymon\JWTAuth\Factory;
-use Tymon\JWTAuth\Payload;
-use Tymon\JWTAuth\JWTGuard;
+use Anton\JWTAuth\JWT;
+use Anton\JWTAuth\Factory;
+use Anton\JWTAuth\Payload;
+use Anton\JWTAuth\JWTGuard;
 use Illuminate\Http\Request;
 use Illuminate\Auth\EloquentUserProvider;
-use Tymon\JWTAuth\Test\Stubs\LaravelUserStub;
+use Anton\JWTAuth\Test\Stubs\LaravelUserStub;
 
 class JWTGuardTest extends AbstractTestCase
 {
     /**
-     * @var \Tymon\JWTAuth\JWT|\Mockery\MockInterface
+     * @var \Anton\JWTAuth\JWT|\Mockery\MockInterface
      */
     protected $jwt;
 
@@ -33,7 +33,7 @@ class JWTGuardTest extends AbstractTestCase
     protected $provider;
 
     /**
-     * @var \Tymon\JWTAuth\JWTGuard|\Mockery\MockInterface
+     * @var \Anton\JWTAuth\JWTGuard|\Mockery\MockInterface
      */
     protected $guard;
 
@@ -69,12 +69,12 @@ class JWTGuardTest extends AbstractTestCase
         $this->jwt->shouldReceive('check')->once()->with(true)->andReturn($payload);
         $this->jwt->shouldReceive('checkSubjectModel')
                   ->once()
-                  ->with('\Tymon\JWTAuth\Test\Stubs\LaravelUserStub')
+                  ->with('\Anton\JWTAuth\Test\Stubs\LaravelUserStub')
                   ->andReturn(true);
 
         $this->provider->shouldReceive('getModel')
                        ->once()
-                       ->andReturn('\Tymon\JWTAuth\Test\Stubs\LaravelUserStub');
+                       ->andReturn('\Anton\JWTAuth\Test\Stubs\LaravelUserStub');
         $this->provider->shouldReceive('retrieveById')
                        ->once()
                        ->with(1)
@@ -104,12 +104,12 @@ class JWTGuardTest extends AbstractTestCase
         $this->jwt->shouldReceive('check')->once()->with(true)->andReturn($payload);
         $this->jwt->shouldReceive('checkSubjectModel')
                   ->once()
-                  ->with('\Tymon\JWTAuth\Test\Stubs\LaravelUserStub')
+                  ->with('\Anton\JWTAuth\Test\Stubs\LaravelUserStub')
                   ->andReturn(true);
 
         $this->provider->shouldReceive('getModel')
                        ->once()
-                       ->andReturn('\Tymon\JWTAuth\Test\Stubs\LaravelUserStub');
+                       ->andReturn('\Anton\JWTAuth\Test\Stubs\LaravelUserStub');
         $this->provider->shouldReceive('retrieveById')
              ->once()
              ->with(1)
@@ -157,7 +157,7 @@ class JWTGuardTest extends AbstractTestCase
     /**
      * @test
      * @group laravel-5.2
-     * @expectedException \Tymon\JWTAuth\Exceptions\UserNotDefinedException
+     * @expectedException \Anton\JWTAuth\Exceptions\UserNotDefinedException
      * @expectedExceptionMessage An error occurred
      */
     public function it_should_throw_an_exception_if_an_invalid_token_is_provided()
@@ -175,7 +175,7 @@ class JWTGuardTest extends AbstractTestCase
     /**
      * @test
      * @group laravel-5.2
-     * @expectedException \Tymon\JWTAuth\Exceptions\UserNotDefinedException
+     * @expectedException \Anton\JWTAuth\Exceptions\UserNotDefinedException
      * @expectedExceptionMessage An error occurred
      */
     public function it_should_throw_an_exception_if_no_token_is_provided()
@@ -197,7 +197,7 @@ class JWTGuardTest extends AbstractTestCase
     public function it_should_return_a_token_if_credentials_are_ok_and_user_is_found()
     {
         $credentials = ['foo' => 'bar', 'baz' => 'bob'];
-        $user = new LaravelUserStub;
+        $user = new LaravelUserStub();
 
         $this->provider->shouldReceive('retrieveByCredentials')
                        ->once()
@@ -237,7 +237,7 @@ class JWTGuardTest extends AbstractTestCase
     public function it_should_return_true_if_credentials_are_ok_and_user_is_found_when_choosing_not_to_login()
     {
         $credentials = ['foo' => 'bar', 'baz' => 'bob'];
-        $user = new LaravelUserStub;
+        $user = new LaravelUserStub();
 
         $this->provider->shouldReceive('retrieveByCredentials')
                        ->twice()
@@ -260,7 +260,7 @@ class JWTGuardTest extends AbstractTestCase
     public function it_should_return_false_if_credentials_are_invalid()
     {
         $credentials = ['foo' => 'bar', 'baz' => 'bob'];
-        $user = new LaravelUserStub;
+        $user = new LaravelUserStub();
 
         $this->provider->shouldReceive('retrieveByCredentials')
                        ->once()
@@ -329,7 +329,7 @@ class JWTGuardTest extends AbstractTestCase
     /**
      * @test
      * @group laravel-5.2
-     * @expectedException \Tymon\JWTAuth\Exceptions\JWTException
+     * @expectedException \Anton\JWTAuth\Exceptions\JWTException
      * @expectedExceptionMessage Token could not be parsed from the request.
      */
     public function it_should_throw_an_exception_if_there_is_no_token_present_when_required()
@@ -347,7 +347,7 @@ class JWTGuardTest extends AbstractTestCase
      */
     public function it_should_generate_a_token_by_id()
     {
-        $user = new LaravelUserStub;
+        $user = new LaravelUserStub();
 
         $this->provider->shouldReceive('retrieveById')
                        ->once()
@@ -383,7 +383,7 @@ class JWTGuardTest extends AbstractTestCase
     public function it_should_authenticate_the_user_by_credentials_and_return_true_if_valid()
     {
         $credentials = ['foo' => 'bar', 'baz' => 'bob'];
-        $user = new LaravelUserStub;
+        $user = new LaravelUserStub();
 
         $this->provider->shouldReceive('retrieveByCredentials')
                        ->once()
@@ -405,7 +405,7 @@ class JWTGuardTest extends AbstractTestCase
     public function it_should_attempt_to_authenticate_the_user_by_credentials_and_return_false_if_invalid()
     {
         $credentials = ['foo' => 'bar', 'baz' => 'bob'];
-        $user = new LaravelUserStub;
+        $user = new LaravelUserStub();
 
         $this->provider->shouldReceive('retrieveByCredentials')
                        ->once()
@@ -426,7 +426,7 @@ class JWTGuardTest extends AbstractTestCase
      */
     public function it_should_authenticate_the_user_by_id_and_return_boolean()
     {
-        $user = new LaravelUserStub;
+        $user = new LaravelUserStub();
 
         $this->provider->shouldReceive('retrieveById')
                        ->twice()
@@ -458,7 +458,7 @@ class JWTGuardTest extends AbstractTestCase
      */
     public function it_should_create_a_token_from_a_user_object()
     {
-        $user = new LaravelUserStub;
+        $user = new LaravelUserStub();
 
         $this->jwt->shouldReceive('fromUser')
                   ->once()

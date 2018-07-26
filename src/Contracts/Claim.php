@@ -3,22 +3,22 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Contracts;
+namespace Anton\JWTAuth\Contracts;
 
 interface Claim
 {
     /**
      * Set the claim value, and call a validate method.
      *
-     * @param  mixed  $value
+     * @param mixed $value
      *
-     * @throws \Tymon\JWTAuth\Exceptions\InvalidClaimException
+     * @throws \Anton\JWTAuth\Exceptions\InvalidClaimException
      *
      * @return $this
      */
@@ -34,7 +34,7 @@ interface Claim
     /**
      * Set the claim name.
      *
-     * @param  string  $name
+     * @param string $name
      *
      * @return $this
      */
@@ -50,7 +50,7 @@ interface Claim
     /**
      * Validate the Claim value.
      *
-     * @param  mixed  $value
+     * @param mixed $value
      *
      * @return bool
      */

@@ -3,18 +3,18 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Claims;
+namespace Anton\JWTAuth\Claims;
 
 use DateInterval;
 use DateTimeInterface;
-use Tymon\JWTAuth\Support\Utils;
-use Tymon\JWTAuth\Exceptions\InvalidClaimException;
+use Anton\JWTAuth\Support\Utils;
+use Anton\JWTAuth\Exceptions\InvalidClaimException;
 
 trait DatetimeTrait
 {
@@ -28,9 +28,9 @@ trait DatetimeTrait
     /**
      * Set the claim value, and call a validate method.
      *
-     * @param  mixed  $value
+     * @param mixed $value
      *
-     * @throws \Tymon\JWTAuth\Exceptions\InvalidClaimException
+     * @throws \Anton\JWTAuth\Exceptions\InvalidClaimException
      *
      * @return $this
      */
@@ -52,7 +52,7 @@ trait DatetimeTrait
      */
     public function validateCreate($value)
     {
-        if (! is_numeric($value)) {
+        if (!is_numeric($value)) {
             throw new InvalidClaimException($this);
         }
 
@@ -62,7 +62,7 @@ trait DatetimeTrait
     /**
      * Determine whether the value is in the future.
      *
-     * @param  mixed  $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -74,7 +74,7 @@ trait DatetimeTrait
     /**
      * Determine whether the value is in the past.
      *
-     * @param  mixed  $value
+     * @param mixed $value
      *
      * @return bool
      */
@@ -86,7 +86,7 @@ trait DatetimeTrait
     /**
      * Set the leeway in seconds.
      *
-     * @param  int  $leeway
+     * @param int $leeway
      *
      * @return $this
      */

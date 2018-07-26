@@ -3,16 +3,16 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Providers\Storage;
+namespace Anton\JWTAuth\Providers\Storage;
 
 use BadMethodCallException;
-use Tymon\JWTAuth\Contracts\Providers\Storage;
+use Anton\JWTAuth\Contracts\Providers\Storage;
 use Psr\SimpleCache\CacheInterface as PsrCacheInterface;
 use Illuminate\Contracts\Cache\Repository as CacheContract;
 
@@ -30,7 +30,7 @@ class Illuminate implements Storage
      *
      * @var string
      */
-    protected $tag = 'tymon.jwt';
+    protected $tag = 'anton.jwt';
 
     /**
      * @var bool
@@ -40,9 +40,7 @@ class Illuminate implements Storage
     /**
      * Constructor.
      *
-     * @param  \Illuminate\Contracts\Cache\Repository  $cache
-     *
-     * @return void
+     * @param \Illuminate\Contracts\Cache\Repository $cache
      */
     public function __construct(CacheContract $cache)
     {
@@ -52,11 +50,9 @@ class Illuminate implements Storage
     /**
      * Add a new item into storage.
      *
-     * @param  string  $key
-     * @param  mixed  $value
-     * @param  int  $minutes
-     *
-     * @return void
+     * @param string $key
+     * @param mixed  $value
+     * @param int    $minutes
      */
     public function add($key, $value, $minutes)
     {
@@ -66,10 +62,8 @@ class Illuminate implements Storage
     /**
      * Add a new item into storage forever.
      *
-     * @param  string  $key
-     * @param  mixed  $value
-     *
-     * @return void
+     * @param string $key
+     * @param mixed  $value
      */
     public function forever($key, $value)
     {
@@ -79,7 +73,7 @@ class Illuminate implements Storage
     /**
      * Get an item from storage.
      *
-     * @param  string  $key
+     * @param string $key
      *
      * @return mixed
      */
@@ -91,7 +85,7 @@ class Illuminate implements Storage
     /**
      * Remove an item from storage.
      *
-     * @param  string  $key
+     * @param string $key
      *
      * @return bool
      */
@@ -102,8 +96,6 @@ class Illuminate implements Storage
 
     /**
      * Remove all items associated with the tag.
-     *
-     * @return void
      */
     public function flush()
     {
@@ -131,8 +123,6 @@ class Illuminate implements Storage
     /**
      * Detect as best we can whether tags are supported with this repository & store,
      * and save our result on the $supportsTags flag.
-     *
-     * @return void
      */
     protected function determineTagSupport()
     {

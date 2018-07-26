@@ -3,24 +3,24 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test\Middleware;
+namespace Anton\JWTAuth\Test\Middleware;
 
 use Mockery;
-use Tymon\JWTAuth\Http\Parser\Parser;
-use Tymon\JWTAuth\Test\Stubs\UserStub;
-use Tymon\JWTAuth\Http\Middleware\Authenticate;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Anton\JWTAuth\Http\Parser\Parser;
+use Anton\JWTAuth\Test\Stubs\UserStub;
+use Anton\JWTAuth\Http\Middleware\Authenticate;
+use Anton\JWTAuth\Exceptions\TokenInvalidException;
 
 class AuthenticateTest extends AbstractMiddlewareTest
 {
     /**
-     * @var \Tymon\JWTAuth\Http\Middleware\Authenticate
+     * @var \Anton\JWTAuth\Http\Middleware\Authenticate
      */
     protected $middleware;
 
@@ -40,10 +40,9 @@ class AuthenticateTest extends AbstractMiddlewareTest
         $this->auth->shouldReceive('parser')->andReturn($parser);
 
         $this->auth->parser()->shouldReceive('setRequest')->once()->with($this->request)->andReturn($this->auth->parser());
-        $this->auth->shouldReceive('parseToken->authenticate')->once()->andReturn(new UserStub);
+        $this->auth->shouldReceive('parseToken->authenticate')->once()->andReturn(new UserStub());
 
         $this->middleware->handle($this->request, function () {
-            //
         });
     }
 
@@ -60,7 +59,6 @@ class AuthenticateTest extends AbstractMiddlewareTest
         $this->auth->parser()->shouldReceive('setRequest')->once()->with($this->request)->andReturn($this->auth->parser());
 
         $this->middleware->handle($this->request, function () {
-            //
         });
     }
 
@@ -76,10 +74,9 @@ class AuthenticateTest extends AbstractMiddlewareTest
         $this->auth->shouldReceive('parser')->andReturn($parser);
 
         $this->auth->parser()->shouldReceive('setRequest')->once()->with($this->request)->andReturn($this->auth->parser());
-        $this->auth->shouldReceive('parseToken->authenticate')->once()->andThrow(new TokenInvalidException);
+        $this->auth->shouldReceive('parseToken->authenticate')->once()->andThrow(new TokenInvalidException());
 
         $this->middleware->handle($this->request, function () {
-            //
         });
     }
 
@@ -98,7 +95,6 @@ class AuthenticateTest extends AbstractMiddlewareTest
         $this->auth->shouldReceive('parseToken->authenticate')->once()->andReturn(false);
 
         $this->middleware->handle($this->request, function () {
-            //
         });
     }
 }

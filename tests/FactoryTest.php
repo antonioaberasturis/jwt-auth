@@ -3,42 +3,42 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test;
+namespace Anton\JWTAuth\Test;
 
 use Mockery;
-use Tymon\JWTAuth\Factory;
-use Tymon\JWTAuth\Payload;
-use Tymon\JWTAuth\Claims\JwtId;
-use Tymon\JWTAuth\Claims\Custom;
-use Tymon\JWTAuth\Claims\Issuer;
-use Tymon\JWTAuth\Claims\Subject;
-use Tymon\JWTAuth\Claims\IssuedAt;
-use Tymon\JWTAuth\Claims\NotBefore;
-use Tymon\JWTAuth\Claims\Collection;
-use Tymon\JWTAuth\Claims\Expiration;
-use Tymon\JWTAuth\Validators\PayloadValidator;
-use Tymon\JWTAuth\Claims\Factory as ClaimFactory;
+use Anton\JWTAuth\Factory;
+use Anton\JWTAuth\Payload;
+use Anton\JWTAuth\Claims\JwtId;
+use Anton\JWTAuth\Claims\Custom;
+use Anton\JWTAuth\Claims\Issuer;
+use Anton\JWTAuth\Claims\Subject;
+use Anton\JWTAuth\Claims\IssuedAt;
+use Anton\JWTAuth\Claims\NotBefore;
+use Anton\JWTAuth\Claims\Collection;
+use Anton\JWTAuth\Claims\Expiration;
+use Anton\JWTAuth\Validators\PayloadValidator;
+use Anton\JWTAuth\Claims\Factory as ClaimFactory;
 
 class FactoryTest extends AbstractTestCase
 {
     /**
-     * @var \Mockery\MockInterface|\Tymon\JWTAuth\Claims\Factory
+     * @var \Mockery\MockInterface|\Anton\JWTAuth\Claims\Factory
      */
     protected $claimFactory;
 
     /**
-     * @var \Mockery\MockInterface|\Tymon\JWTAuth\Validators\PayloadValidator
+     * @var \Mockery\MockInterface|\Anton\JWTAuth\Validators\PayloadValidator
      */
     protected $validator;
 
     /**
-     * @var \Tymon\JWTAuth\Factory
+     * @var \Anton\JWTAuth\Factory
      */
     protected $factory;
 

@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test\Providers\JWT;
+namespace Anton\JWTAuth\Test\Providers\JWT;
 
 use Mockery;
 use Exception;
@@ -17,8 +17,8 @@ use Lcobucci\JWT\Parser;
 use Lcobucci\JWT\Builder;
 use Lcobucci\JWT\Signer\Key;
 use InvalidArgumentException;
-use Tymon\JWTAuth\Test\AbstractTestCase;
-use Tymon\JWTAuth\Providers\JWT\Lcobucci;
+use Anton\JWTAuth\Test\AbstractTestCase;
+use Anton\JWTAuth\Providers\JWT\Lcobucci;
 
 class LcobucciTest extends AbstractTestCase
 {
@@ -33,7 +33,7 @@ class LcobucciTest extends AbstractTestCase
     protected $builder;
 
     /**
-     * @var \Tymon\JWTAuth\Providers\JWT\Namshi
+     * @var \Anton\JWTAuth\Providers\JWT\Namshi
      */
     protected $provider;
 
@@ -62,7 +62,7 @@ class LcobucciTest extends AbstractTestCase
 
     /**
      * @test
-     * @expectedException \Tymon\JWTAuth\Exceptions\JWTException
+     * @expectedException \Anton\JWTAuth\Exceptions\JWTException
      * @expectedExceptionMessage Could not create token:
      */
     public function it_should_throw_an_invalid_exception_when_the_payload_could_not_be_encoded()
@@ -71,7 +71,7 @@ class LcobucciTest extends AbstractTestCase
 
         $this->builder->shouldReceive('unsign')->once()->andReturnSelf();
         $this->builder->shouldReceive('set')->times(count($payload));
-        $this->builder->shouldReceive('sign')->once()->with(Mockery::any(), 'secret')->andThrow(new Exception);
+        $this->builder->shouldReceive('sign')->once()->with(Mockery::any(), 'secret')->andThrow(new Exception());
 
         $this->getProvider('secret', 'HS256')->encode($payload);
     }
@@ -90,7 +90,7 @@ class LcobucciTest extends AbstractTestCase
 
     /**
      * @test
-     * @expectedException \Tymon\JWTAuth\Exceptions\TokenInvalidException
+     * @expectedException \Anton\JWTAuth\Exceptions\TokenInvalidException
      * @expectedExceptionMessage Token Signature could not be verified.
      */
     public function it_should_throw_a_token_invalid_exception_when_the_token_could_not_be_decoded_due_to_a_bad_signature()
@@ -104,12 +104,12 @@ class LcobucciTest extends AbstractTestCase
 
     /**
      * @test
-     * @expectedException \Tymon\JWTAuth\Exceptions\TokenInvalidException
+     * @expectedException \Anton\JWTAuth\Exceptions\TokenInvalidException
      * @expectedExceptionMessage Could not decode token:
      */
     public function it_should_throw_a_token_invalid_exception_when_the_token_could_not_be_decoded()
     {
-        $this->parser->shouldReceive('parse')->once()->with('foo.bar.baz')->andThrow(new InvalidArgumentException);
+        $this->parser->shouldReceive('parse')->once()->with('foo.bar.baz')->andThrow(new InvalidArgumentException());
         $this->parser->shouldReceive('verify')->never();
         $this->parser->shouldReceive('getClaims')->never();
 
@@ -139,7 +139,7 @@ class LcobucciTest extends AbstractTestCase
 
     /**
      * @test
-     * @expectedException \Tymon\JWTAuth\Exceptions\JWTException
+     * @expectedException \Anton\JWTAuth\Exceptions\JWTException
      * @expectedExceptionMessage The given algorithm could not be found
      */
     public function it_should_throw_a_exception_when_the_algorithm_passed_is_invalid()

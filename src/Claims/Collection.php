@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Claims;
+namespace Anton\JWTAuth\Claims;
 
 use Illuminate\Support\Str;
 use Illuminate\Support\Collection as IlluminateCollection;
@@ -19,9 +19,7 @@ class Collection extends IlluminateCollection
     /**
      * Create a new collection.
      *
-     * @param  mixed  $items
-     *
-     * @return void
+     * @param mixed $items
      */
     public function __construct($items = [])
     {
@@ -31,11 +29,11 @@ class Collection extends IlluminateCollection
     /**
      * Get a Claim instance by it's unique name.
      *
-     * @param  string  $name
-     * @param  callable  $callback
-     * @param  mixed  $default
+     * @param string   $name
+     * @param callable $callback
+     * @param mixed    $default
      *
-     * @return \Tymon\JWTAuth\Claims\Claim
+     * @return \Anton\JWTAuth\Claims\Claim
      */
     public function getByClaimName($name, callable $callback = null, $default = null)
     {
@@ -47,7 +45,7 @@ class Collection extends IlluminateCollection
     /**
      * Validate each claim under a given context.
      *
-     * @param  string  $context
+     * @param string $context
      *
      * @return $this
      */
@@ -69,7 +67,7 @@ class Collection extends IlluminateCollection
     /**
      * Determine if the Collection contains all of the given keys.
      *
-     * @param  mixed  $claims
+     * @param mixed $claims
      *
      * @return bool
      */
@@ -101,7 +99,7 @@ class Collection extends IlluminateCollection
     /**
      * Ensure that the given claims array is keyed by the claim name.
      *
-     * @param  mixed  $items
+     * @param mixed $items
      *
      * @return array
      */
@@ -109,7 +107,7 @@ class Collection extends IlluminateCollection
     {
         $claims = [];
         foreach ($items as $key => $value) {
-            if (! is_string($key) && $value instanceof Claim) {
+            if (!is_string($key) && $value instanceof Claim) {
                 $key = $value->getName();
             }
 

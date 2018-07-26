@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Http\Parser;
+namespace Anton\JWTAuth\Http\Parser;
 
 use Illuminate\Http\Request;
 
@@ -32,10 +32,8 @@ class Parser
     /**
      * Constructor.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  array  $chain
-     *
-     * @return void
+     * @param \Illuminate\Http\Request $request
+     * @param array                    $chain
      */
     public function __construct(Request $request, array $chain = [])
     {
@@ -56,7 +54,7 @@ class Parser
     /**
      * Set the order of the parser chain.
      *
-     * @param  array  $chain
+     * @param array $chain
      *
      * @return $this
      */
@@ -70,7 +68,7 @@ class Parser
     /**
      * Alias for setting the order of the chain.
      *
-     * @param  array  $chain
+     * @param array $chain
      *
      * @return $this
      */
@@ -107,7 +105,7 @@ class Parser
     /**
      * Set the request instance.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return $this
      */

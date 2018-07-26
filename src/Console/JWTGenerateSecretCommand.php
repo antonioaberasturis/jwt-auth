@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Console;
+namespace Anton\JWTAuth\Console;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
@@ -34,8 +34,6 @@ class JWTGenerateSecretCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
     public function handle()
     {
@@ -74,9 +72,7 @@ class JWTGenerateSecretCommand extends Command
     /**
      * Display the key.
      *
-     * @param  string  $key
-     *
-     * @return void
+     * @param string $key
      */
     protected function displayKey($key)
     {

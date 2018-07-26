@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test\Claims;
+namespace Anton\JWTAuth\Test\Claims;
 
 use Mockery;
 use DateTime;
@@ -17,21 +17,21 @@ use DateInterval;
 use Carbon\Carbon;
 use DateTimeImmutable;
 use DateTimeInterface;
-use Tymon\JWTAuth\Payload;
-use Tymon\JWTAuth\Claims\JwtId;
-use Tymon\JWTAuth\Claims\Issuer;
-use Tymon\JWTAuth\Claims\Subject;
-use Tymon\JWTAuth\Claims\IssuedAt;
-use Tymon\JWTAuth\Claims\NotBefore;
-use Tymon\JWTAuth\Claims\Collection;
-use Tymon\JWTAuth\Claims\Expiration;
-use Tymon\JWTAuth\Test\AbstractTestCase;
-use Tymon\JWTAuth\Validators\PayloadValidator;
+use Anton\JWTAuth\Payload;
+use Anton\JWTAuth\Claims\JwtId;
+use Anton\JWTAuth\Claims\Issuer;
+use Anton\JWTAuth\Claims\Subject;
+use Anton\JWTAuth\Claims\IssuedAt;
+use Anton\JWTAuth\Claims\NotBefore;
+use Anton\JWTAuth\Claims\Collection;
+use Anton\JWTAuth\Claims\Expiration;
+use Anton\JWTAuth\Test\AbstractTestCase;
+use Anton\JWTAuth\Validators\PayloadValidator;
 
 class DatetimeClaimTest extends AbstractTestCase
 {
     /**
-     * @var \Mockery\MockInterface|\Tymon\JWTAuth\Validators\PayloadValidator
+     * @var \Mockery\MockInterface|\Anton\JWTAuth\Validators\PayloadValidator
      */
     protected $validator;
 

@@ -3,47 +3,47 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test;
+namespace Anton\JWTAuth\Test;
 
 use Mockery;
 use stdClass;
-use Tymon\JWTAuth\Token;
-use Tymon\JWTAuth\Factory;
-use Tymon\JWTAuth\JWTAuth;
-use Tymon\JWTAuth\Manager;
-use Tymon\JWTAuth\Payload;
+use Anton\JWTAuth\Token;
+use Anton\JWTAuth\Factory;
+use Anton\JWTAuth\JWTAuth;
+use Anton\JWTAuth\Manager;
+use Anton\JWTAuth\Payload;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Http\Parser\Parser;
-use Tymon\JWTAuth\Test\Stubs\UserStub;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Contracts\Providers\Auth;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Anton\JWTAuth\Http\Parser\Parser;
+use Anton\JWTAuth\Test\Stubs\UserStub;
+use Anton\JWTAuth\Exceptions\JWTException;
+use Anton\JWTAuth\Contracts\Providers\Auth;
+use Anton\JWTAuth\Exceptions\TokenInvalidException;
 
 class JWTAuthTest extends AbstractTestCase
 {
     /**
-     * @var \Mockery\MockInterface|\Tymon\JWTAuth\Manager
+     * @var \Mockery\MockInterface|\Anton\JWTAuth\Manager
      */
     protected $manager;
 
     /**
-     * @var \Mockery\MockInterface|\Tymon\JWTAuth\Contracts\Providers\Auth
+     * @var \Mockery\MockInterface|\Anton\JWTAuth\Contracts\Providers\Auth
      */
     protected $auth;
 
     /**
-     * @var \Mockery\MockInterface|\Tymon\JWTAuth\Http\Parser\Parser
+     * @var \Mockery\MockInterface|\Anton\JWTAuth\Http\Parser\Parser
      */
     protected $parser;
 
     /**
-     * @var \Tymon\JWTAuth\JWTAuth
+     * @var \Anton\JWTAuth\JWTAuth
      */
     protected $jwtAuth;
 
@@ -64,12 +64,12 @@ class JWTAuthTest extends AbstractTestCase
         $this->manager
              ->shouldReceive('getPayloadFactory->customClaims')
              ->once()
-             ->with(['sub' => 1, 'prv' => sha1('Tymon\JWTAuth\Test\Stubs\UserStub'), 'foo' => 'bar', 'role' => 'admin'])
+             ->with(['sub' => 1, 'prv' => sha1('Anton\JWTAuth\Test\Stubs\UserStub'), 'foo' => 'bar', 'role' => 'admin'])
              ->andReturn($payloadFactory);
 
         $this->manager->shouldReceive('encode->get')->once()->andReturn('foo.bar.baz');
 
-        $token = $this->jwtAuth->fromUser(new UserStub);
+        $token = $this->jwtAuth->fromUser(new UserStub());
 
         $this->assertSame($token, 'foo.bar.baz');
     }
@@ -81,11 +81,11 @@ class JWTAuthTest extends AbstractTestCase
         $payloadFactory->shouldReceive('make')->andReturn(Mockery::mock(Payload::class));
         $payloadFactory->shouldReceive('get')
                        ->with('prv')
-                       ->andReturn(sha1('Tymon\JWTAuth\Test\Stubs\UserStub'));
+                       ->andReturn(sha1('Anton\JWTAuth\Test\Stubs\UserStub'));
 
         $this->manager->shouldReceive('decode')->once()->andReturn($payloadFactory);
 
-        $this->assertTrue($this->jwtAuth->setToken('foo.bar.baz')->checkSubjectModel('Tymon\JWTAuth\Test\Stubs\UserStub'));
+        $this->assertTrue($this->jwtAuth->setToken('foo.bar.baz')->checkSubjectModel('Anton\JWTAuth\Test\Stubs\UserStub'));
     }
 
     /** @test */
@@ -99,7 +99,7 @@ class JWTAuthTest extends AbstractTestCase
 
         $this->manager->shouldReceive('decode')->once()->andReturn($payloadFactory);
 
-        $this->assertTrue($this->jwtAuth->setToken('foo.bar.baz')->checkSubjectModel('Tymon\JWTAuth\Test\Stubs\UserStub'));
+        $this->assertTrue($this->jwtAuth->setToken('foo.bar.baz')->checkSubjectModel('Anton\JWTAuth\Test\Stubs\UserStub'));
     }
 
     /** @test */
@@ -109,11 +109,11 @@ class JWTAuthTest extends AbstractTestCase
         $payloadFactory->shouldReceive('make')->andReturn(Mockery::mock(Payload::class));
         $payloadFactory->shouldReceive('get')
                        ->with('prv')
-                       ->andReturn(sha1('Tymon\JWTAuth\Test\Stubs\UserStub1'));
+                       ->andReturn(sha1('Anton\JWTAuth\Test\Stubs\UserStub1'));
 
         $this->manager->shouldReceive('decode')->once()->andReturn($payloadFactory);
 
-        $this->assertFalse($this->jwtAuth->setToken('foo.bar.baz')->checkSubjectModel('Tymon\JWTAuth\Test\Stubs\UserStub'));
+        $this->assertFalse($this->jwtAuth->setToken('foo.bar.baz')->checkSubjectModel('Anton\JWTAuth\Test\Stubs\UserStub'));
     }
 
     /** @test */
@@ -125,13 +125,13 @@ class JWTAuthTest extends AbstractTestCase
         $this->manager
              ->shouldReceive('getPayloadFactory->customClaims')
              ->once()
-             ->with(['sub' => 1, 'prv' => sha1('Tymon\JWTAuth\Test\Stubs\UserStub'), 'foo' => 'bar', 'role' => 'admin'])
+             ->with(['sub' => 1, 'prv' => sha1('Anton\JWTAuth\Test\Stubs\UserStub'), 'foo' => 'bar', 'role' => 'admin'])
              ->andReturn($payloadFactory);
 
         $this->manager->shouldReceive('encode->get')->once()->andReturn('foo.bar.baz');
 
         $this->auth->shouldReceive('byCredentials')->once()->andReturn(true);
-        $this->auth->shouldReceive('user')->once()->andReturn(new UserStub);
+        $this->auth->shouldReceive('user')->once()->andReturn(new UserStub());
 
         $token = $this->jwtAuth->attempt(['foo' => 'bar']);
 
@@ -152,7 +152,7 @@ class JWTAuthTest extends AbstractTestCase
 
     /**
      * @test
-     * @expectedException \Tymon\JWTAuth\Exceptions\JWTException
+     * @expectedException \Anton\JWTAuth\Exceptions\JWTException
      * @expectedExceptionMessage A token is required
      */
     public function it_should_throw_an_exception_when_not_providing_a_token()
@@ -245,7 +245,7 @@ class JWTAuthTest extends AbstractTestCase
     public function it_should_return_false_if_the_token_is_invalid()
     {
         $this->parser->shouldReceive('parseToken')->andReturn('foo.bar.baz');
-        $this->manager->shouldReceive('decode')->once()->andThrow(new TokenInvalidException);
+        $this->manager->shouldReceive('decode')->once()->andThrow(new TokenInvalidException());
 
         $this->assertFalse($this->jwtAuth->parseToken()->check());
     }
@@ -263,7 +263,7 @@ class JWTAuthTest extends AbstractTestCase
 
     /**
      * @test
-     * @expectedException \Tymon\JWTAuth\Exceptions\JWTException
+     * @expectedException \Anton\JWTAuth\Exceptions\JWTException
      * @expectedExceptionMessage The token could not be parsed from the request
      */
     public function it_should_throw_an_exception_when_token_not_present_in_request()
@@ -284,7 +284,7 @@ class JWTAuthTest extends AbstractTestCase
     /** @test */
     public function it_should_magically_call_the_manager()
     {
-        $this->manager->shouldReceive('getBlacklist')->andReturn(new stdClass);
+        $this->manager->shouldReceive('getBlacklist')->andReturn(new stdClass());
 
         $blacklist = $this->jwtAuth->manager()->getBlacklist();
 
@@ -307,7 +307,7 @@ class JWTAuthTest extends AbstractTestCase
     /** @test */
     public function it_should_unset_the_token()
     {
-        $this->parser->shouldReceive('parseToken')->andThrow(new JWTException);
+        $this->parser->shouldReceive('parseToken')->andThrow(new JWTException());
         $token = new Token('foo.bar.baz');
         $this->jwtAuth->setToken($token);
 

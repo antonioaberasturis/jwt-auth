@@ -3,24 +3,24 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test\Middleware;
+namespace Anton\JWTAuth\Test\Middleware;
 
 use Mockery;
-use Tymon\JWTAuth\Http\Parser\Parser;
-use Tymon\JWTAuth\Test\Stubs\UserStub;
-use Tymon\JWTAuth\Http\Middleware\Check;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Anton\JWTAuth\Http\Parser\Parser;
+use Anton\JWTAuth\Test\Stubs\UserStub;
+use Anton\JWTAuth\Http\Middleware\Check;
+use Anton\JWTAuth\Exceptions\TokenInvalidException;
 
 class CheckTest extends AbstractMiddlewareTest
 {
     /**
-     * @var \Tymon\JWTAuth\Http\Middleware\Check
+     * @var \Anton\JWTAuth\Http\Middleware\Check
      */
     protected $middleware;
 
@@ -40,10 +40,9 @@ class CheckTest extends AbstractMiddlewareTest
         $this->auth->shouldReceive('parser')->andReturn($parser);
 
         $this->auth->parser()->shouldReceive('setRequest')->once()->with($this->request)->andReturn($this->auth->parser());
-        $this->auth->shouldReceive('parseToken->authenticate')->once()->andReturn(new UserStub);
+        $this->auth->shouldReceive('parseToken->authenticate')->once()->andReturn(new UserStub());
 
         $this->middleware->handle($this->request, function () {
-            //
         });
     }
 
@@ -56,10 +55,9 @@ class CheckTest extends AbstractMiddlewareTest
         $this->auth->shouldReceive('parser')->andReturn($parser);
 
         $this->auth->parser()->shouldReceive('setRequest')->once()->with($this->request)->andReturn($this->auth->parser());
-        $this->auth->shouldReceive('parseToken->authenticate')->once()->andThrow(new TokenInvalidException);
+        $this->auth->shouldReceive('parseToken->authenticate')->once()->andThrow(new TokenInvalidException());
 
         $this->middleware->handle($this->request, function () {
-            //
         });
     }
 
@@ -75,7 +73,6 @@ class CheckTest extends AbstractMiddlewareTest
         $this->auth->shouldReceive('parseToken->authenticate')->never();
 
         $this->middleware->handle($this->request, function () {
-            //
         });
     }
 }

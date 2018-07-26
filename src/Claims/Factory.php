@@ -3,17 +3,17 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Claims;
+namespace Anton\JWTAuth\Claims;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Support\Utils;
+use Anton\JWTAuth\Support\Utils;
 
 class Factory
 {
@@ -56,9 +56,7 @@ class Factory
     /**
      * Constructor.
      *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return void
+     * @param \Illuminate\Http\Request $request
      */
     public function __construct(Request $request)
     {
@@ -68,10 +66,10 @@ class Factory
     /**
      * Get the instance of the claim when passing the name and value.
      *
-     * @param  string  $name
-     * @param  mixed  $value
+     * @param string $name
+     * @param mixed  $value
      *
-     * @return \Tymon\JWTAuth\Claims\Claim
+     * @return \Anton\JWTAuth\Claims\Claim
      */
     public function get($name, $value)
     {
@@ -89,7 +87,7 @@ class Factory
     /**
      * Check whether the claim exists.
      *
-     * @param  string  $name
+     * @param string $name
      *
      * @return bool
      */
@@ -101,9 +99,9 @@ class Factory
     /**
      * Generate the initial value and return the Claim instance.
      *
-     * @param  string  $name
+     * @param string $name
      *
-     * @return \Tymon\JWTAuth\Claims\Claim
+     * @return \Anton\JWTAuth\Claims\Claim
      */
     public function make($name)
     {
@@ -163,8 +161,8 @@ class Factory
     /**
      * Add a new claim mapping.
      *
-     * @param  string  $name
-     * @param  string  $classPath
+     * @param string $name
+     * @param string $classPath
      *
      * @return $this
      */
@@ -178,7 +176,7 @@ class Factory
     /**
      * Set the request instance.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      *
      * @return $this
      */
@@ -192,7 +190,7 @@ class Factory
     /**
      * Set the token ttl (in minutes).
      *
-     * @param  int  $ttl
+     * @param int $ttl
      *
      * @return $this
      */
@@ -216,7 +214,7 @@ class Factory
     /**
      * Set the leeway in seconds.
      *
-     * @param  int  $leeway
+     * @param int $leeway
      *
      * @return $this
      */

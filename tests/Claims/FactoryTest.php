@@ -3,30 +3,30 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <tymon148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Test\Claims;
+namespace Anton\JWTAuth\Test\Claims;
 
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Claims\JwtId;
-use Tymon\JWTAuth\Claims\Custom;
-use Tymon\JWTAuth\Claims\Issuer;
-use Tymon\JWTAuth\Claims\Factory;
-use Tymon\JWTAuth\Claims\Subject;
-use Tymon\JWTAuth\Claims\IssuedAt;
-use Tymon\JWTAuth\Claims\NotBefore;
-use Tymon\JWTAuth\Claims\Expiration;
-use Tymon\JWTAuth\Test\Fixtures\Foo;
-use Tymon\JWTAuth\Test\AbstractTestCase;
+use Anton\JWTAuth\Claims\JwtId;
+use Anton\JWTAuth\Claims\Custom;
+use Anton\JWTAuth\Claims\Issuer;
+use Anton\JWTAuth\Claims\Factory;
+use Anton\JWTAuth\Claims\Subject;
+use Anton\JWTAuth\Claims\IssuedAt;
+use Anton\JWTAuth\Claims\NotBefore;
+use Anton\JWTAuth\Claims\Expiration;
+use Anton\JWTAuth\Test\Fixtures\Foo;
+use Anton\JWTAuth\Test\AbstractTestCase;
 
 class FactoryTest extends AbstractTestCase
 {
     /**
-     * @var \Tymon\JWTAuth\Claims\Factory
+     * @var \Anton\JWTAuth\Claims\Factory
      */
     protected $factory;
 
