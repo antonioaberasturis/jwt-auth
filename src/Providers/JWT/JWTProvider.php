@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Providers\JWT;
+namespace Anton\JWTAuth\Providers\JWT;
 
 abstract class JWTProvider
 {
@@ -24,8 +24,8 @@ abstract class JWTProvider
     protected $algo;
 
     /**
-     * @param string  $secret
-     * @param string  $algo
+     * @param string $secret
+     * @param string $algo
      */
     public function __construct($secret, $algo = 'HS256')
     {
@@ -36,7 +36,8 @@ abstract class JWTProvider
     /**
      * Set the algorithm used to sign the token.
      *
-     * @param  string  $algo
+     * @param string $algo
+     *
      * @return self
      */
     public function setAlgo($algo)
@@ -59,7 +60,7 @@ abstract class JWTProvider
     /**
      * Set the secret used to sign the token.
      *
-     * @param  string  $secret
+     * @param string $secret
      *
      * @return $this
      */

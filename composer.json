@@ -1,5 +1,5 @@
 {
-    "name": "tymon/jwt-auth",
+    "name": "anton/jwt-auth",
     "description": "JSON Web Token Authentication for Laravel 4 and 5",
     "keywords": [
         "jwt",
@@ -35,12 +35,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Tymon\\JWTAuth\\": "src"
+            "Anton\\JWTAuth\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Tymon\\JWTAuth\\Test\\": "tests"
+            "Anton\\JWTAuth\\Test\\": "tests"
         }
     },
     "extra": {

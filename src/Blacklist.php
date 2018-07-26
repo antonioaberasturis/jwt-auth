@@ -3,20 +3,20 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth;
+namespace Anton\JWTAuth;
 
-use Tymon\JWTAuth\Providers\Storage\StorageInterface;
+use Anton\JWTAuth\Providers\Storage\StorageInterface;
 
 class Blacklist
 {
     /**
-     * @var \Tymon\JWTAuth\Providers\Storage\StorageInterface
+     * @var \Anton\JWTAuth\Providers\Storage\StorageInterface
      */
     protected $storage;
 
@@ -28,7 +28,7 @@ class Blacklist
     protected $refreshTTL = 20160;
 
     /**
-     * @param \Tymon\JWTAuth\Providers\Storage\StorageInterface  $storage
+     * @param \Anton\JWTAuth\Providers\Storage\StorageInterface $storage
      */
     public function __construct(StorageInterface $storage)
     {
@@ -38,7 +38,8 @@ class Blacklist
     /**
      * Add the token (jti claim) to the blacklist.
      *
-     * @param  \Tymon\JWTAuth\Payload  $payload
+     * @param \Anton\JWTAuth\Payload $payload
+     *
      * @return bool
      */
     public function add(Payload $payload)
@@ -66,7 +67,8 @@ class Blacklist
     /**
      * Determine whether the token has been blacklisted.
      *
-     * @param  \Tymon\JWTAuth\Payload  $payload
+     * @param \Anton\JWTAuth\Payload $payload
+     *
      * @return bool
      */
     public function has(Payload $payload)
@@ -77,7 +79,8 @@ class Blacklist
     /**
      * Remove the token (jti claim) from the blacklist.
      *
-     * @param  \Tymon\JWTAuth\Payload  $payload
+     * @param \Anton\JWTAuth\Payload $payload
+     *
      * @return bool
      */
     public function remove(Payload $payload)

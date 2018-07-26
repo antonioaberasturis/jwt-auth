@@ -3,22 +3,22 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Providers;
+namespace Anton\JWTAuth\Providers;
 
-use Tymon\JWTAuth\JWTAuth;
-use Tymon\JWTAuth\Blacklist;
-use Tymon\JWTAuth\JWTManager;
-use Tymon\JWTAuth\Claims\Factory;
-use Tymon\JWTAuth\PayloadFactory;
+use Anton\JWTAuth\JWTAuth;
+use Anton\JWTAuth\Blacklist;
+use Anton\JWTAuth\JWTManager;
+use Anton\JWTAuth\Claims\Factory;
+use Anton\JWTAuth\PayloadFactory;
 use Illuminate\Support\ServiceProvider;
-use Tymon\JWTAuth\Commands\JWTGenerateCommand;
-use Tymon\JWTAuth\Validators\PayloadValidator;
+use Anton\JWTAuth\Commands\JWTGenerateCommand;
+use Anton\JWTAuth\Validators\PayloadValidator;
 
 class JWTAuthServiceProvider extends ServiceProvider
 {
@@ -40,7 +40,7 @@ class JWTAuthServiceProvider extends ServiceProvider
 
         $this->bootBindings();
 
-        $this->commands('tymon.jwt.generate');
+        $this->commands('Anton.jwt.generate');
     }
 
     /**
@@ -48,51 +48,49 @@ class JWTAuthServiceProvider extends ServiceProvider
      */
     protected function bootBindings()
     {
-        $this->app->singleton('Tymon\JWTAuth\JWTAuth', function ($app) {
-            return $app['tymon.jwt.auth'];
+        $this->app->singleton('Anton\JWTAuth\JWTAuth', function ($app) {
+            return $app['Anton.jwt.auth'];
         });
 
-        $this->app->singleton('Tymon\JWTAuth\Providers\User\UserInterface', function ($app) {
-            return $app['tymon.jwt.provider.user'];
+        $this->app->singleton('Anton\JWTAuth\Providers\User\UserInterface', function ($app) {
+            return $app['Anton.jwt.provider.user'];
         });
 
-        $this->app->singleton('Tymon\JWTAuth\Providers\JWT\JWTInterface', function ($app) {
-            return $app['tymon.jwt.provider.jwt'];
+        $this->app->singleton('Anton\JWTAuth\Providers\JWT\JWTInterface', function ($app) {
+            return $app['Anton.jwt.provider.jwt'];
         });
 
-        $this->app->singleton('Tymon\JWTAuth\Providers\Auth\AuthInterface', function ($app) {
-            return $app['tymon.jwt.provider.auth'];
+        $this->app->singleton('Anton\JWTAuth\Providers\Auth\AuthInterface', function ($app) {
+            return $app['Anton.jwt.provider.auth'];
         });
 
-        $this->app->singleton('Tymon\JWTAuth\Providers\Storage\StorageInterface', function ($app) {
-            return $app['tymon.jwt.provider.storage'];
+        $this->app->singleton('Anton\JWTAuth\Providers\Storage\StorageInterface', function ($app) {
+            return $app['Anton.jwt.provider.storage'];
         });
 
-        $this->app->singleton('Tymon\JWTAuth\JWTManager', function ($app) {
-            return $app['tymon.jwt.manager'];
+        $this->app->singleton('Anton\JWTAuth\JWTManager', function ($app) {
+            return $app['Anton.jwt.manager'];
         });
 
-        $this->app->singleton('Tymon\JWTAuth\Blacklist', function ($app) {
-            return $app['tymon.jwt.blacklist'];
+        $this->app->singleton('Anton\JWTAuth\Blacklist', function ($app) {
+            return $app['Anton.jwt.blacklist'];
         });
 
-        $this->app->singleton('Tymon\JWTAuth\PayloadFactory', function ($app) {
-            return $app['tymon.jwt.payload.factory'];
+        $this->app->singleton('Anton\JWTAuth\PayloadFactory', function ($app) {
+            return $app['Anton.jwt.payload.factory'];
         });
 
-        $this->app->singleton('Tymon\JWTAuth\Claims\Factory', function ($app) {
-            return $app['tymon.jwt.claim.factory'];
+        $this->app->singleton('Anton\JWTAuth\Claims\Factory', function ($app) {
+            return $app['Anton.jwt.claim.factory'];
         });
 
-        $this->app->singleton('Tymon\JWTAuth\Validators\PayloadValidator', function ($app) {
-            return $app['tymon.jwt.validators.payload'];
+        $this->app->singleton('Anton\JWTAuth\Validators\PayloadValidator', function ($app) {
+            return $app['Anton.jwt.validators.payload'];
         });
     }
 
     /**
      * Register the service provider.
-     *
-     * @return void
      */
     public function register()
     {
@@ -119,7 +117,7 @@ class JWTAuthServiceProvider extends ServiceProvider
      */
     protected function registerUserProvider()
     {
-        $this->app->singleton('tymon.jwt.provider.user', function ($app) {
+        $this->app->singleton('Anton.jwt.provider.user', function ($app) {
             $provider = $this->config('providers.user');
             $model = $app->make($this->config('user'));
 
@@ -132,7 +130,7 @@ class JWTAuthServiceProvider extends ServiceProvider
      */
     protected function registerJWTProvider()
     {
-        $this->app->singleton('tymon.jwt.provider.jwt', function ($app) {
+        $this->app->singleton('Anton.jwt.provider.jwt', function ($app) {
             $secret = $this->config('secret');
             $algo = $this->config('algo');
             $provider = $this->config('providers.jwt');
@@ -146,7 +144,7 @@ class JWTAuthServiceProvider extends ServiceProvider
      */
     protected function registerAuthProvider()
     {
-        $this->app->singleton('tymon.jwt.provider.auth', function ($app) {
+        $this->app->singleton('Anton.jwt.provider.auth', function ($app) {
             return $this->getConfigInstance($this->config('providers.auth'));
         });
     }
@@ -156,7 +154,7 @@ class JWTAuthServiceProvider extends ServiceProvider
      */
     protected function registerStorageProvider()
     {
-        $this->app->singleton('tymon.jwt.provider.storage', function ($app) {
+        $this->app->singleton('Anton.jwt.provider.storage', function ($app) {
             return $this->getConfigInstance($this->config('providers.storage'));
         });
     }
@@ -166,7 +164,7 @@ class JWTAuthServiceProvider extends ServiceProvider
      */
     protected function registerClaimFactory()
     {
-        $this->app->singleton('tymon.jwt.claim.factory', function () {
+        $this->app->singleton('Anton.jwt.claim.factory', function () {
             return new Factory();
         });
     }
@@ -176,11 +174,11 @@ class JWTAuthServiceProvider extends ServiceProvider
      */
     protected function registerJWTManager()
     {
-        $this->app->singleton('tymon.jwt.manager', function ($app) {
+        $this->app->singleton('Anton.jwt.manager', function ($app) {
             $instance = new JWTManager(
-                $app['tymon.jwt.provider.jwt'],
-                $app['tymon.jwt.blacklist'],
-                $app['tymon.jwt.payload.factory']
+                $app['Anton.jwt.provider.jwt'],
+                $app['Anton.jwt.blacklist'],
+                $app['Anton.jwt.payload.factory']
             );
 
             return $instance->setBlacklistEnabled((bool) $this->config('blacklist_enabled'));
@@ -192,11 +190,11 @@ class JWTAuthServiceProvider extends ServiceProvider
      */
     protected function registerJWTAuth()
     {
-        $this->app->singleton('tymon.jwt.auth', function ($app) {
+        $this->app->singleton('Anton.jwt.auth', function ($app) {
             $auth = new JWTAuth(
-                $app['tymon.jwt.manager'],
-                $app['tymon.jwt.provider.user'],
-                $app['tymon.jwt.provider.auth'],
+                $app['Anton.jwt.manager'],
+                $app['Anton.jwt.provider.user'],
+                $app['Anton.jwt.provider.auth'],
                 $app['request']
             );
 
@@ -209,8 +207,8 @@ class JWTAuthServiceProvider extends ServiceProvider
      */
     protected function registerJWTBlacklist()
     {
-        $this->app->singleton('tymon.jwt.blacklist', function ($app) {
-            $instance = new Blacklist($app['tymon.jwt.provider.storage']);
+        $this->app->singleton('Anton.jwt.blacklist', function ($app) {
+            $instance = new Blacklist($app['Anton.jwt.provider.storage']);
 
             return $instance->setRefreshTTL($this->config('refresh_ttl'));
         });
@@ -221,7 +219,7 @@ class JWTAuthServiceProvider extends ServiceProvider
      */
     protected function registerPayloadValidator()
     {
-        $this->app->singleton('tymon.jwt.validators.payload', function () {
+        $this->app->singleton('Anton.jwt.validators.payload', function () {
             return with(new PayloadValidator())->setRefreshTTL($this->config('refresh_ttl'))->setRequiredClaims($this->config('required_claims'));
         });
     }
@@ -231,8 +229,8 @@ class JWTAuthServiceProvider extends ServiceProvider
      */
     protected function registerPayloadFactory()
     {
-        $this->app->singleton('tymon.jwt.payload.factory', function ($app) {
-            $factory = new PayloadFactory($app['tymon.jwt.claim.factory'], $app['request'], $app['tymon.jwt.validators.payload']);
+        $this->app->singleton('Anton.jwt.payload.factory', function ($app) {
+            $factory = new PayloadFactory($app['Anton.jwt.claim.factory'], $app['request'], $app['Anton.jwt.validators.payload']);
 
             return $factory->setTTL($this->config('ttl'));
         });
@@ -243,7 +241,7 @@ class JWTAuthServiceProvider extends ServiceProvider
      */
     protected function registerJWTCommand()
     {
-        $this->app->singleton('tymon.jwt.generate', function () {
+        $this->app->singleton('Anton.jwt.generate', function () {
             return new JWTGenerateCommand();
         });
     }
@@ -251,7 +249,8 @@ class JWTAuthServiceProvider extends ServiceProvider
     /**
      * Helper to get the config values.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return string
      */
     protected function config($key, $default = null)
@@ -262,7 +261,8 @@ class JWTAuthServiceProvider extends ServiceProvider
     /**
      * Get an instantiable configuration instance. Pinched from dingo/api :).
      *
-     * @param  mixed  $instance
+     * @param mixed $instance
+     *
      * @return object
      */
     protected function getConfigInstance($instance)

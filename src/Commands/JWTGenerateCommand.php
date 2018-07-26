@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Commands;
+namespace Anton\JWTAuth\Commands;
 
 use Illuminate\Support\Str;
 use Illuminate\Console\Command;
@@ -33,8 +33,6 @@ class JWTGenerateCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
     public function fire()
     {

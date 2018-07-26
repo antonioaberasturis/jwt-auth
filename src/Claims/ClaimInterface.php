@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Claims;
+namespace Anton\JWTAuth\Claims;
 
 interface ClaimInterface
 {
@@ -17,6 +17,7 @@ interface ClaimInterface
      * Set the claim value, and call a validate method if available.
      *
      * @param mixed
+     *
      * @return Claim
      */
     public function setValue($value);
@@ -31,7 +32,8 @@ interface ClaimInterface
     /**
      * Set the claim name.
      *
-     * @param string  $name
+     * @param string $name
+     *
      * @return Claim
      */
     public function setName($name);

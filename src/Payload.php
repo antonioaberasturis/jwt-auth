@@ -3,33 +3,33 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth;
+namespace Anton\JWTAuth;
 
-use Tymon\JWTAuth\Claims\Claim;
-use Tymon\JWTAuth\Exceptions\PayloadException;
-use Tymon\JWTAuth\Validators\PayloadValidator;
+use Anton\JWTAuth\Claims\Claim;
+use Anton\JWTAuth\Exceptions\PayloadException;
+use Anton\JWTAuth\Validators\PayloadValidator;
 
 class Payload implements \ArrayAccess
 {
     /**
      * The array of claims.
      *
-     * @var \Tymon\JWTAuth\Claims\Claim[]
+     * @var \Anton\JWTAuth\Claims\Claim[]
      */
     private $claims = [];
 
     /**
      * Build the Payload.
      *
-     * @param array  $claims
-     * @param \Tymon\JWTAuth\Validators\PayloadValidator  $validator
-     * @param bool   $refreshFlow
+     * @param array                                      $claims
+     * @param \Anton\JWTAuth\Validators\PayloadValidator $validator
+     * @param bool                                       $refreshFlow
      */
     public function __construct(array $claims, PayloadValidator $validator, $refreshFlow = false)
     {
@@ -41,7 +41,7 @@ class Payload implements \ArrayAccess
     /**
      * Get the array of claim instances.
      *
-     * @return \Tymon\JWTAuth\Claims\Claim[]
+     * @return \Anton\JWTAuth\Claims\Claim[]
      */
     public function getClaims()
     {
@@ -66,12 +66,13 @@ class Payload implements \ArrayAccess
     /**
      * Get the payload.
      *
-     * @param  string  $claim
+     * @param string $claim
+     *
      * @return mixed
      */
     public function get($claim = null)
     {
-        if (! is_null($claim)) {
+        if (!is_null($claim)) {
             if (is_array($claim)) {
                 return array_map([$this, 'get'], $claim);
             }
@@ -85,7 +86,8 @@ class Payload implements \ArrayAccess
     /**
      * Determine whether the payload has the claim.
      *
-     * @param  \Tymon\JWTAuth\Claims\Claim  $claim
+     * @param \Anton\JWTAuth\Claims\Claim $claim
+     *
      * @return bool
      */
     public function has(Claim $claim)
@@ -106,7 +108,8 @@ class Payload implements \ArrayAccess
     /**
      * Determine if an item exists at an offset.
      *
-     * @param  mixed  $key
+     * @param mixed $key
+     *
      * @return bool
      */
     public function offsetExists($key)
@@ -117,7 +120,8 @@ class Payload implements \ArrayAccess
     /**
      * Get an item at a given offset.
      *
-     * @param  mixed  $key
+     * @param mixed $key
+     *
      * @return mixed
      */
     public function offsetGet($key)
@@ -128,10 +132,10 @@ class Payload implements \ArrayAccess
     /**
      * Don't allow changing the payload as it should be immutable.
      *
-     * @param  mixed $key
-     * @param  mixed $value
+     * @param mixed $key
+     * @param mixed $value
+     *
      * @throws Exceptions\PayloadException
-     * @return void
      */
     public function offsetSet($key, $value)
     {
@@ -141,9 +145,9 @@ class Payload implements \ArrayAccess
     /**
      * Don't allow changing the payload as it should be immutable.
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @throws Exceptions\PayloadException
-     * @return void
      */
     public function offsetUnset($key)
     {
@@ -153,15 +157,17 @@ class Payload implements \ArrayAccess
     /**
      * Magically get a claim value.
      *
-     * @param  string  $method
-     * @param  array   $parameters
+     * @param string $method
+     * @param array  $parameters
+     *
      * @return mixed
+     *
      * @throws \BadMethodCallException
      */
     public function __call($method, $parameters)
     {
-        if (! method_exists($this, $method) && starts_with($method, 'get')) {
-            $class = sprintf('Tymon\\JWTAuth\\Claims\\%s', substr($method, 3));
+        if (!method_exists($this, $method) && starts_with($method, 'get')) {
+            $class = sprintf('Anton\\JWTAuth\\Claims\\%s', substr($method, 3));
 
             foreach ($this->claims as $claim) {
                 if (get_class($claim) === $class) {

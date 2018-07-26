@@ -3,17 +3,17 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Validators;
+namespace Anton\JWTAuth\Validators;
 
-use Tymon\JWTAuth\Utils;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Anton\JWTAuth\Utils;
+use Anton\JWTAuth\Exceptions\TokenExpiredException;
+use Anton\JWTAuth\Exceptions\TokenInvalidException;
 
 class PayloadValidator extends AbstractValidator
 {
@@ -30,14 +30,13 @@ class PayloadValidator extends AbstractValidator
     /**
      * Run the validations on the payload array.
      *
-     * @param  array  $value
-     * @return void
+     * @param array $value
      */
     public function check($value)
     {
         $this->validateStructure($value);
 
-        if (! $this->refreshFlow) {
+        if (!$this->refreshFlow) {
             $this->validateTimestamps($value);
         } else {
             $this->validateRefresh($value);
@@ -48,8 +47,10 @@ class PayloadValidator extends AbstractValidator
      * Ensure the payload contains the required claims and
      * the claims have the relevant type.
      *
-     * @param array  $payload
-     * @throws \Tymon\JWTAuth\Exceptions\TokenInvalidException
+     * @param array $payload
+     *
+     * @throws \Anton\JWTAuth\Exceptions\TokenInvalidException
+     *
      * @return bool
      */
     protected function validateStructure(array $payload)
@@ -64,9 +65,11 @@ class PayloadValidator extends AbstractValidator
     /**
      * Validate the payload timestamps.
      *
-     * @param  array  $payload
-     * @throws \Tymon\JWTAuth\Exceptions\TokenExpiredException
-     * @throws \Tymon\JWTAuth\Exceptions\TokenInvalidException
+     * @param array $payload
+     *
+     * @throws \Anton\JWTAuth\Exceptions\TokenExpiredException
+     * @throws \Anton\JWTAuth\Exceptions\TokenInvalidException
+     *
      * @return bool
      */
     protected function validateTimestamps(array $payload)
@@ -90,6 +93,7 @@ class PayloadValidator extends AbstractValidator
      * Check the token in the refresh flow context.
      *
      * @param  $payload
+     *
      * @return bool
      */
     protected function validateRefresh(array $payload)
@@ -104,7 +108,7 @@ class PayloadValidator extends AbstractValidator
     /**
      * Set the required claims.
      *
-     * @param array  $claims
+     * @param array $claims
      */
     public function setRequiredClaims(array $claims)
     {
@@ -116,7 +120,7 @@ class PayloadValidator extends AbstractValidator
     /**
      * Set the refresh ttl.
      *
-     * @param int  $ttl
+     * @param int $ttl
      */
     public function setRefreshTTL($ttl)
     {

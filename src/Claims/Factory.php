@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Claims;
+namespace Anton\JWTAuth\Claims;
 
 class Factory
 {
@@ -17,21 +17,22 @@ class Factory
      * @var array
      */
     private static $classMap = [
-        'aud' => 'Tymon\JWTAuth\Claims\Audience',
-        'exp' => 'Tymon\JWTAuth\Claims\Expiration',
-        'iat' => 'Tymon\JWTAuth\Claims\IssuedAt',
-        'iss' => 'Tymon\JWTAuth\Claims\Issuer',
-        'jti' => 'Tymon\JWTAuth\Claims\JwtId',
-        'nbf' => 'Tymon\JWTAuth\Claims\NotBefore',
-        'sub' => 'Tymon\JWTAuth\Claims\Subject',
+        'aud' => 'Anton\JWTAuth\Claims\Audience',
+        'exp' => 'Anton\JWTAuth\Claims\Expiration',
+        'iat' => 'Anton\JWTAuth\Claims\IssuedAt',
+        'iss' => 'Anton\JWTAuth\Claims\Issuer',
+        'jti' => 'Anton\JWTAuth\Claims\JwtId',
+        'nbf' => 'Anton\JWTAuth\Claims\NotBefore',
+        'sub' => 'Anton\JWTAuth\Claims\Subject',
     ];
 
     /**
      * Get the instance of the claim when passing the name and value.
      *
-     * @param  string  $name
-     * @param  mixed   $value
-     * @return \Tymon\JWTAuth\Claims\Claim
+     * @param string $name
+     * @param mixed  $value
+     *
+     * @return \Anton\JWTAuth\Claims\Claim
      */
     public function get($name, $value)
     {
@@ -45,7 +46,8 @@ class Factory
     /**
      * Check whether the claim exists.
      *
-     * @param  string  $name
+     * @param string $name
+     *
      * @return bool
      */
     public function has($name)

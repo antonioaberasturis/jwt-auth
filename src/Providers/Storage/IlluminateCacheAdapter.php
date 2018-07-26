@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Providers\Storage;
+namespace Anton\JWTAuth\Providers\Storage;
 
 use Illuminate\Cache\CacheManager;
 
@@ -23,10 +23,10 @@ class IlluminateCacheAdapter implements StorageInterface
     /**
      * @var string
      */
-    protected $tag = 'tymon.jwt';
+    protected $tag = 'Anton.jwt';
 
     /**
-     * @param \Illuminate\Cache\CacheManager  $cache
+     * @param \Illuminate\Cache\CacheManager $cache
      */
     public function __construct(CacheManager $cache)
     {
@@ -36,10 +36,9 @@ class IlluminateCacheAdapter implements StorageInterface
     /**
      * Add a new item into storage.
      *
-     * @param  string  $key
-     * @param  mixed  $value
-     * @param  int  $minutes
-     * @return void
+     * @param string $key
+     * @param mixed  $value
+     * @param int    $minutes
      */
     public function add($key, $value, $minutes)
     {
@@ -49,7 +48,8 @@ class IlluminateCacheAdapter implements StorageInterface
     /**
      * Check whether a key exists in storage.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return bool
      */
     public function has($key)
@@ -60,7 +60,8 @@ class IlluminateCacheAdapter implements StorageInterface
     /**
      * Remove an item from storage.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return bool
      */
     public function destroy($key)
@@ -70,8 +71,6 @@ class IlluminateCacheAdapter implements StorageInterface
 
     /**
      * Remove all items associated with the tag.
-     *
-     * @return void
      */
     public function flush()
     {
@@ -85,7 +84,7 @@ class IlluminateCacheAdapter implements StorageInterface
      */
     protected function cache()
     {
-        if (! method_exists($this->cache, 'tags')) {
+        if (!method_exists($this->cache, 'tags')) {
             return $this->cache;
         }
 

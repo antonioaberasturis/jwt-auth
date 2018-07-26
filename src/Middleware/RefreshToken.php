@@ -3,24 +3,25 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Middleware;
+namespace Anton\JWTAuth\Middleware;
 
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Exceptions\TokenExpiredException;
+use Anton\JWTAuth\Exceptions\JWTException;
+use Anton\JWTAuth\Exceptions\TokenExpiredException;
 
 class RefreshToken extends BaseMiddleware
 {
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
+     * @param \Illuminate\Http\Request $request
+     * @param \Closure                 $next
+     *
      * @return mixed
      */
     public function handle($request, \Closure $next)
@@ -30,9 +31,9 @@ class RefreshToken extends BaseMiddleware
         try {
             $newToken = $this->auth->setRequest($request)->parseToken()->refresh();
         } catch (TokenExpiredException $e) {
-            return $this->respond('tymon.jwt.expired', 'token_expired', $e->getStatusCode(), [$e]);
+            return $this->respond('Anton.jwt.expired', 'token_expired', $e->getStatusCode(), [$e]);
         } catch (JWTException $e) {
-            return $this->respond('tymon.jwt.invalid', 'token_invalid', $e->getStatusCode(), [$e]);
+            return $this->respond('Anton.jwt.invalid', 'token_invalid', $e->getStatusCode(), [$e]);
         }
 
         // send the refreshed token back to the client

@@ -3,15 +3,15 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Claims;
+namespace Anton\JWTAuth\Claims;
 
-use Tymon\JWTAuth\Exceptions\InvalidClaimException;
+use Anton\JWTAuth\Exceptions\InvalidClaimException;
 
 abstract class Claim implements ClaimInterface
 {
@@ -30,7 +30,7 @@ abstract class Claim implements ClaimInterface
     private $value;
 
     /**
-     * @param mixed  $value
+     * @param mixed $value
      */
     public function __construct($value)
     {
@@ -41,12 +41,14 @@ abstract class Claim implements ClaimInterface
      * Set the claim value, and call a validate method if available.
      *
      * @param $value
-     * @throws \Tymon\JWTAuth\Exceptions\InvalidClaimException
+     *
+     * @throws \Anton\JWTAuth\Exceptions\InvalidClaimException
+     *
      * @return $this
      */
     public function setValue($value)
     {
-        if (! $this->validate($value)) {
+        if (!$this->validate($value)) {
             throw new InvalidClaimException('Invalid value provided for claim "'.$this->getName().'": '.$value);
         }
 
@@ -69,6 +71,7 @@ abstract class Claim implements ClaimInterface
      * Set the claim name.
      *
      * @param string $name
+     *
      * @return $this
      */
     public function setName($name)
@@ -92,6 +95,7 @@ abstract class Claim implements ClaimInterface
      * Validate the Claim value.
      *
      * @param  $value
+     *
      * @return bool
      */
     protected function validate($value)

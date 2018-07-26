@@ -3,23 +3,22 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Validators;
+namespace Anton\JWTAuth\Validators;
 
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Anton\JWTAuth\Exceptions\TokenInvalidException;
 
 class TokenValidator extends AbstractValidator
 {
     /**
      * Check the structure of the token.
      *
-     * @param string  $value
-     * @return void
+     * @param string $value
      */
     public function check($value)
     {
@@ -27,8 +26,10 @@ class TokenValidator extends AbstractValidator
     }
 
     /**
-     * @param  string  $token
-     * @throws \Tymon\JWTAuth\Exceptions\TokenInvalidException
+     * @param string $token
+     *
+     * @throws \Anton\JWTAuth\Exceptions\TokenInvalidException
+     *
      * @return bool
      */
     protected function validateStructure($token)

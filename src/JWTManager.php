@@ -3,32 +3,32 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth;
+namespace Anton\JWTAuth;
 
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Providers\JWT\JWTInterface;
-use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
+use Anton\JWTAuth\Exceptions\JWTException;
+use Anton\JWTAuth\Providers\JWT\JWTInterface;
+use Anton\JWTAuth\Exceptions\TokenBlacklistedException;
 
 class JWTManager
 {
     /**
-     * @var \Tymon\JWTAuth\Providers\JWT\JWTInterface
+     * @var \Anton\JWTAuth\Providers\JWT\JWTInterface
      */
     protected $jwt;
 
     /**
-     * @var \Tymon\JWTAuth\Blacklist
+     * @var \Anton\JWTAuth\Blacklist
      */
     protected $blacklist;
 
     /**
-     * @var \Tymon\JWTAuth\PayloadFactory
+     * @var \Anton\JWTAuth\PayloadFactory
      */
     protected $payloadFactory;
 
@@ -43,9 +43,9 @@ class JWTManager
     protected $refreshFlow = false;
 
     /**
-     *  @param \Tymon\JWTAuth\Providers\JWT\JWTInterface  $jwt
-     *  @param \Tymon\JWTAuth\Blacklist  $blacklist
-     *  @param \Tymon\JWTAuth\PayloadFactory  $payloadFactory
+     *  @param \Anton\JWTAuth\Providers\JWT\JWTInterface  $jwt
+     *  @param \Anton\JWTAuth\Blacklist  $blacklist
+     *  @param \Anton\JWTAuth\PayloadFactory  $payloadFactory
      */
     public function __construct(JWTInterface $jwt, Blacklist $blacklist, PayloadFactory $payloadFactory)
     {
@@ -57,8 +57,9 @@ class JWTManager
     /**
      * Encode a Payload and return the Token.
      *
-     * @param  \Tymon\JWTAuth\Payload  $payload
-     * @return \Tymon\JWTAuth\Token
+     * @param \Anton\JWTAuth\Payload $payload
+     *
+     * @return \Anton\JWTAuth\Token
      */
     public function encode(Payload $payload)
     {
@@ -70,8 +71,10 @@ class JWTManager
     /**
      * Decode a Token and return the Payload.
      *
-     * @param  \Tymon\JWTAuth\Token $token
+     * @param \Anton\JWTAuth\Token $token
+     *
      * @return Payload
+     *
      * @throws TokenBlacklistedException
      */
     public function decode(Token $token)
@@ -90,8 +93,9 @@ class JWTManager
     /**
      * Refresh a Token and return a new Token.
      *
-     * @param  \Tymon\JWTAuth\Token  $token
-     * @return \Tymon\JWTAuth\Token
+     * @param \Anton\JWTAuth\Token $token
+     *
+     * @return \Anton\JWTAuth\Token
      */
     public function refresh(Token $token)
     {
@@ -114,12 +118,13 @@ class JWTManager
     /**
      * Invalidate a Token by adding it to the blacklist.
      *
-     * @param  Token  $token
+     * @param Token $token
+     *
      * @return bool
      */
     public function invalidate(Token $token)
     {
-        if (! $this->blacklistEnabled) {
+        if (!$this->blacklistEnabled) {
             throw new JWTException('You must have the blacklist enabled to invalidate a token.');
         }
 
@@ -129,7 +134,7 @@ class JWTManager
     /**
      * Get the PayloadFactory instance.
      *
-     * @return \Tymon\JWTAuth\PayloadFactory
+     * @return \Anton\JWTAuth\PayloadFactory
      */
     public function getPayloadFactory()
     {
@@ -139,7 +144,7 @@ class JWTManager
     /**
      * Get the JWTProvider instance.
      *
-     * @return \Tymon\JWTAuth\Providers\JWT\JWTInterface
+     * @return \Anton\JWTAuth\Providers\JWT\JWTInterface
      */
     public function getJWTProvider()
     {
@@ -149,7 +154,7 @@ class JWTManager
     /**
      * Get the Blacklist instance.
      *
-     * @return \Tymon\JWTAuth\Blacklist
+     * @return \Anton\JWTAuth\Blacklist
      */
     public function getBlacklist()
     {
@@ -159,7 +164,7 @@ class JWTManager
     /**
      * Set whether the blacklist is enabled.
      *
-     * @param bool  $enabled
+     * @param bool $enabled
      */
     public function setBlacklistEnabled($enabled)
     {
@@ -172,6 +177,7 @@ class JWTManager
      * Set the refresh flow.
      *
      * @param bool $refreshFlow
+     *
      * @return $this
      */
     public function setRefreshFlow($refreshFlow = true)

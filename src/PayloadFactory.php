@@ -3,23 +3,23 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth;
+namespace Anton\JWTAuth;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Claims\Factory;
-use Tymon\JWTAuth\Validators\PayloadValidator;
+use Anton\JWTAuth\Claims\Factory;
+use Anton\JWTAuth\Validators\PayloadValidator;
 
 class PayloadFactory
 {
     /**
-     * @var \Tymon\JWTAuth\Claims\Factory
+     * @var \Anton\JWTAuth\Claims\Factory
      */
     protected $claimFactory;
 
@@ -29,7 +29,7 @@ class PayloadFactory
     protected $request;
 
     /**
-     * @var \Tymon\JWTAuth\Validators\PayloadValidator
+     * @var \Anton\JWTAuth\Validators\PayloadValidator
      */
     protected $validator;
 
@@ -54,9 +54,9 @@ class PayloadFactory
     protected $claims = [];
 
     /**
-     * @param \Tymon\JWTAuth\Claims\Factory  $claimFactory
-     * @param \Illuminate\Http\Request  $request
-     * @param \Tymon\JWTAuth\Validators\PayloadValidator  $validator
+     * @param \Anton\JWTAuth\Claims\Factory              $claimFactory
+     * @param \Illuminate\Http\Request                   $request
+     * @param \Anton\JWTAuth\Validators\PayloadValidator $validator
      */
     public function __construct(Factory $claimFactory, Request $request, PayloadValidator $validator)
     {
@@ -68,8 +68,9 @@ class PayloadFactory
     /**
      * Create the Payload instance.
      *
-     * @param  array  $customClaims
-     * @return \Tymon\JWTAuth\Payload
+     * @param array $customClaims
+     *
+     * @return \Anton\JWTAuth\Payload
      */
     public function make(array $customClaims = [])
     {
@@ -81,7 +82,8 @@ class PayloadFactory
     /**
      * Add an array of claims to the Payload.
      *
-     * @param  array  $claims
+     * @param array $claims
+     *
      * @return $this
      */
     public function addClaims(array $claims)
@@ -96,8 +98,9 @@ class PayloadFactory
     /**
      * Add a claim to the Payload.
      *
-     * @param  string  $name
-     * @param  mixed   $value
+     * @param string $name
+     * @param mixed  $value
+     *
      * @return $this
      */
     public function addClaim($name, $value)
@@ -110,7 +113,8 @@ class PayloadFactory
     /**
      * Build the default claims.
      *
-     * @param  array  $customClaims
+     * @param array $customClaims
+     *
      * @return $this
      */
     protected function buildClaims(array $customClaims)
@@ -119,7 +123,7 @@ class PayloadFactory
         $this->addClaims($customClaims);
 
         foreach ($this->defaultClaims as $claim) {
-            if (! array_key_exists($claim, $customClaims)) {
+            if (!array_key_exists($claim, $customClaims)) {
                 $this->addClaim($claim, $this->$claim());
             }
         }
@@ -195,7 +199,8 @@ class PayloadFactory
     /**
      * Set the token ttl (in minutes).
      *
-     * @param  int  $ttl
+     * @param int $ttl
+     *
      * @return $this
      */
     public function setTTL($ttl)
@@ -219,6 +224,7 @@ class PayloadFactory
      * Set the refresh flow.
      *
      * @param bool $refreshFlow
+     *
      * @return $this
      */
     public function setRefreshFlow($refreshFlow = true)
@@ -231,9 +237,11 @@ class PayloadFactory
     /**
      * Magically add a claim.
      *
-     * @param  string  $method
-     * @param  array   $parameters
+     * @param string $method
+     * @param array  $parameters
+     *
      * @return PayloadFactory
+     *
      * @throws \BadMethodCallException
      */
     public function __call($method, $parameters)

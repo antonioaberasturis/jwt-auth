@@ -3,15 +3,15 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Validators;
+namespace Anton\JWTAuth\Validators;
 
-use Tymon\JWTAuth\Exceptions\JWTException;
+use Anton\JWTAuth\Exceptions\JWTException;
 
 abstract class AbstractValidator implements ValidatorInterface
 {
@@ -23,7 +23,8 @@ abstract class AbstractValidator implements ValidatorInterface
     /**
      * Helper function to return a boolean.
      *
-     * @param  array  $value
+     * @param array $value
+     *
      * @return bool
      */
     public function isValid($value)
@@ -40,7 +41,8 @@ abstract class AbstractValidator implements ValidatorInterface
     /**
      * Set the refresh flow flag.
      *
-     * @param  bool  $refreshFlow
+     * @param bool $refreshFlow
+     *
      * @return $this
      */
     public function setRefreshFlow($refreshFlow = true)

@@ -3,13 +3,13 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Claims;
+namespace Anton\JWTAuth\Claims;
 
 class NotBefore extends Claim
 {
@@ -23,7 +23,8 @@ class NotBefore extends Claim
     /**
      * Validate the not before claim.
      *
-     * @param  mixed  $value
+     * @param mixed $value
+     *
      * @return bool
      */
     protected function validate($value)

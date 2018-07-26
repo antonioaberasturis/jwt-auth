@@ -3,18 +3,18 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth\Providers\JWT;
+namespace Anton\JWTAuth\Providers\JWT;
 
 use Exception;
 use Namshi\JOSE\JWS;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Exceptions\TokenInvalidException;
+use Anton\JWTAuth\Exceptions\JWTException;
+use Anton\JWTAuth\Exceptions\TokenInvalidException;
 
 class NamshiAdapter extends JWTProvider implements JWTInterface
 {
@@ -24,9 +24,9 @@ class NamshiAdapter extends JWTProvider implements JWTInterface
     protected $jws;
 
     /**
-     * @param string  $secret
-     * @param string  $algo
-     * @param null    $driver
+     * @param string $secret
+     * @param string $algo
+     * @param null   $driver
      */
     public function __construct($secret, $algo, $driver = null)
     {
@@ -39,7 +39,8 @@ class NamshiAdapter extends JWTProvider implements JWTInterface
      * Create a JSON Web Token.
      *
      * @return string
-     * @throws \Tymon\JWTAuth\Exceptions\JWTException
+     *
+     * @throws \Anton\JWTAuth\Exceptions\JWTException
      */
     public function encode(array $payload)
     {
@@ -55,9 +56,11 @@ class NamshiAdapter extends JWTProvider implements JWTInterface
     /**
      * Decode a JSON Web Token.
      *
-     * @param  string  $token
+     * @param string $token
+     *
      * @return array
-     * @throws \Tymon\JWTAuth\Exceptions\JWTException
+     *
+     * @throws \Anton\JWTAuth\Exceptions\JWTException
      */
     public function decode($token)
     {
@@ -67,7 +70,7 @@ class NamshiAdapter extends JWTProvider implements JWTInterface
             throw new TokenInvalidException('Could not decode token: '.$e->getMessage());
         }
 
-        if (! $jws->verify($this->secret, $this->algo)) {
+        if (!$jws->verify($this->secret, $this->algo)) {
             throw new TokenInvalidException('Token Signature could not be verified.');
         }
 

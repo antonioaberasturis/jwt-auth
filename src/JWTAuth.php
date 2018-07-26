@@ -3,33 +3,33 @@
 /*
  * This file is part of jwt-auth.
  *
- * (c) Sean Tymon <tymon148@gmail.com>
+ * (c) Sean Anton <Anton148@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Tymon\JWTAuth;
+namespace Anton\JWTAuth;
 
 use Illuminate\Http\Request;
-use Tymon\JWTAuth\Exceptions\JWTException;
-use Tymon\JWTAuth\Providers\Auth\AuthInterface;
-use Tymon\JWTAuth\Providers\User\UserInterface;
+use Anton\JWTAuth\Exceptions\JWTException;
+use Anton\JWTAuth\Providers\Auth\AuthInterface;
+use Anton\JWTAuth\Providers\User\UserInterface;
 
 class JWTAuth
 {
     /**
-     * @var \Tymon\JWTAuth\JWTManager
+     * @var \Anton\JWTAuth\JWTManager
      */
     protected $manager;
 
     /**
-     * @var \Tymon\JWTAuth\Providers\User\UserInterface
+     * @var \Anton\JWTAuth\Providers\User\UserInterface
      */
     protected $user;
 
     /**
-     * @var \Tymon\JWTAuth\Providers\Auth\AuthInterface
+     * @var \Anton\JWTAuth\Providers\Auth\AuthInterface
      */
     protected $auth;
 
@@ -44,14 +44,14 @@ class JWTAuth
     protected $identifier = 'id';
 
     /**
-     * @var \Tymon\JWTAuth\Token
+     * @var \Anton\JWTAuth\Token
      */
     protected $token;
 
     /**
-     * @param \Tymon\JWTAuth\JWTManager                   $manager
-     * @param \Tymon\JWTAuth\Providers\User\UserInterface $user
-     * @param \Tymon\JWTAuth\Providers\Auth\AuthInterface $auth
+     * @param \Anton\JWTAuth\JWTManager                   $manager
+     * @param \Anton\JWTAuth\Providers\User\UserInterface $user
+     * @param \Anton\JWTAuth\Providers\Auth\AuthInterface $auth
      * @param \Illuminate\Http\Request                    $request
      */
     public function __construct(JWTManager $manager, UserInterface $user, AuthInterface $auth, Request $request)
@@ -73,7 +73,7 @@ class JWTAuth
     {
         $payload = $this->getPayload($token);
 
-        if (! $user = $this->user->getBy($this->identifier, $payload['sub'])) {
+        if (!$user = $this->user->getBy($this->identifier, $payload['sub'])) {
             return false;
         }
 
@@ -105,7 +105,7 @@ class JWTAuth
      */
     public function attempt(array $credentials = [], array $customClaims = [])
     {
-        if (! $this->auth->byCredentials($credentials)) {
+        if (!$this->auth->byCredentials($credentials)) {
             return false;
         }
 
@@ -123,7 +123,7 @@ class JWTAuth
     {
         $id = $this->getPayload($token)->get('sub');
 
-        if (! $this->auth->byId($id)) {
+        if (!$this->auth->byId($id)) {
             return false;
         }
 
@@ -165,7 +165,7 @@ class JWTAuth
      */
     public function getToken()
     {
-        if (! $this->token) {
+        if (!$this->token) {
             try {
                 $this->parseToken();
             } catch (JWTException $e) {
@@ -181,7 +181,7 @@ class JWTAuth
      *
      * @param mixed $token
      *
-     * @return \Tymon\JWTAuth\Payload
+     * @return \Anton\JWTAuth\Payload
      */
     public function getPayload($token = false)
     {
@@ -199,8 +199,8 @@ class JWTAuth
      */
     public function parseToken($method = 'bearer', $header = 'authorization', $query = 'token')
     {
-        if (! $token = $this->parseAuthHeader($header, $method)) {
-            if (! $token = $this->request->query($query, false)) {
+        if (!$token = $this->parseAuthHeader($header, $method)) {
+            if (!$token = $this->request->query($query, false)) {
                 throw new JWTException('The token could not be parsed from the request', 400);
             }
         }
@@ -220,7 +220,7 @@ class JWTAuth
     {
         $header = $this->request->headers->get($header);
 
-        if (! starts_with(strtolower($header), $method)) {
+        if (!starts_with(strtolower($header), $method)) {
             return false;
         }
 
@@ -233,7 +233,7 @@ class JWTAuth
      * @param mixed $subject
      * @param array $customClaims
      *
-     * @return \Tymon\JWTAuth\Payload
+     * @return \Anton\JWTAuth\Payload
      */
     protected function makePayload($subject, array $customClaims = [])
     {
@@ -287,7 +287,7 @@ class JWTAuth
      *
      * @return JWTAuth
      *
-     * @throws \Tymon\JWTAuth\Exceptions\JWTException
+     * @throws \Anton\JWTAuth\Exceptions\JWTException
      */
     protected function requireToken($token)
     {
@@ -315,7 +315,7 @@ class JWTAuth
     /**
      * Get the JWTManager instance.
      *
-     * @return \Tymon\JWTAuth\JWTManager
+     * @return \Anton\JWTAuth\JWTManager
      */
     public function manager()
     {
